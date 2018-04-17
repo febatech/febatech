@@ -1,0 +1,54 @@
+.table th {
+    background-color: #3399ff;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.violet {
+    background-color: blueviolet !important;
+    color: #fff;
+
+}
+
+.description {
+    width: 22% !important;
+}
+
+.order {
+    /* display: inline-block;*/
+    float: left;
+}
+
+.submitbtn {
+    margin-left: 40%;
+
+}
+
+.submitbtn2 {
+    margin-bottom: 20px;
+}
+
+.form-search {
+    box-shadow: 2px 2px grey;
+    margin-left: 20%;
+    margin-top: 3%;
+    border-radius: 25px;
+
+}
+
+.search-input {
+    margin-bottom: 10%;
+}
+
+
+
+.edit {}
+
+
+.button-h2 {
+    padding-bottom: 50px;
+}
