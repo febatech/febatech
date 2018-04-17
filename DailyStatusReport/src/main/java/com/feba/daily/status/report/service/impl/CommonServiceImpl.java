@@ -48,7 +48,7 @@ public class CommonServiceImpl implements CommonService
 		
 		BeanUtils.copyProperties(dailyStatusReportBean, dailyStatusReportNFT);
 		BeanUtils.copyProperties(dailyStatusReportBean, raidLog);
-		raidLog.setDailyStatusReportNFT(dailyStatusReportNFT);
+		//raidLog.setDailyStatusReportNFT(dailyStatusReportNFT);
 		
 		Set<TestDesignSummary> testDesignSummaries = populateDesignSummary(dailyStatusReportBean);
 		Set<TestExecutionSummary> testExecutionSummaries = populateTestExecutionSummary(dailyStatusReportBean);

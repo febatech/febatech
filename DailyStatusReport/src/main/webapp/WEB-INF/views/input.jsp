@@ -58,35 +58,35 @@
                             <tbody>
                                 <tr>
                                     <th>Planing Phase</th>
-                                    <td> <form:input id="planingPhaseStart" path="planingPhaseStart" type="text" class="form-control"/> </td>
-                                    <td><form:input id="planingPhaseEnd" path="planingPhaseEnd" type="text" class="form-control"/>
+                                    <td> <form:input id="planingPhaseStart" path="planingPhaseStart" type="date" style="width:173px" class="form-control"/> </td>
+                                    <td><form:input id="planingPhaseEnd" path="planingPhaseEnd" type="date" style="width:173px" class="form-control"/>
                                     </td>
                                     <td style="background-color: green;color: #fff;">
-                                    	<form:input id="planingPhasePercentage" path="planingPhasePercentage" type="number" class="form-control"/>
+                                    	<form:input id="planingPhasePercentage" path="planingPhasePercentage" type="number" style="width:70px" class="form-control"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Test Design Phase</th>
-                                    <td><form:input id="testDesignPhaseStart" path="testDesignPhaseStart" type="text" class="form-control"/></td>
-                                    <td><form:input id="testDesignPhaseEnd" path="testDesignPhaseEnd" type="text" class="form-control"/></td>
+                                    <td><form:input id="testDesignPhaseStart" path="testDesignPhaseStart" type="date" style="width:173px" class="form-control"/></td>
+                                    <td><form:input id="testDesignPhaseEnd" path="testDesignPhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td style="background-color: darkorange;">
-                                    	<form:input id="testDesignPhasePercentage" path="testDesignPhasePercentage" type="number" class="form-control"/>
+                                    	<form:input id="testDesignPhasePercentage" path="testDesignPhasePercentage" type="number" style="width:70px" class="form-control"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Execution Phase</th>
-                                    <td><form:input id="executionPhaseStart" path="executionPhaseStart" type="text" class="form-control"/></td>
-                                    <td><form:input id="executionPhaseEnd" path="executionPhaseEnd" type="text" class="form-control"/></td>
+                                    <td><form:input id="executionPhaseStart" path="executionPhaseStart" type="date" style="width:173px" class="form-control"/></td>
+                                    <td><form:input id="executionPhaseEnd" path="executionPhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td style="background-color: darkorange;">
-                                    	<form:input id="executionPhasePercentage" path="executionPhasePercentage" type="number" class="form-control"/>
+                                    	<form:input id="executionPhasePercentage" path="executionPhasePercentage" type="number" style="width:70px" class="form-control"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Sign Off & Closure Phase</th>
-                                    <td><form:input id="signOffAndClosurePhaseStart" path="signOffAndClosurePhaseStart" type="text" class="form-control"/></td>
-                                    <td><form:input id="signOffAndClosurePhaseEnd" path="signOffAndClosurePhaseEnd" type="text" class="form-control"/></td>
+                                    <td><form:input id="signOffAndClosurePhaseStart" path="signOffAndClosurePhaseStart" type="date" style="width:173px" class="form-control"/></td>
+                                    <td><form:input id="signOffAndClosurePhaseEnd" path="signOffAndClosurePhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td style="background-color: darkorange;">
-                                    	<form:input id="signOffAndClosurePhasePercentage" path="signOffAndClosurePhasePercentage" type="number" class="form-control"/>
+                                    	<form:input id="signOffAndClosurePhasePercentage" path="signOffAndClosurePhasePercentage" type="number" style="width:70px" class="form-control"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -109,7 +109,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-lg-1 order">
+                    <div class="col-lg-2 order">
                     </div>
                     <div class="col-lg-3 order">
                         <table class="table table-bordered violet">
@@ -424,15 +424,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><form:input id = "firstRowSeverity" path = "firstRowSeverity" type="number" class="form-control"/></td>
-                            <td><form:input id = "firstRowOpen" path = "firstRowOpen" type="number" class="form-control"/></td>
+                            <td><form:input id = "firstRowSeverity" path = "firstRowSeverity" value="1" type="number" readonly="true" class="form-control"/></td>
+                            <td><form:input id = "firstRowOpen" path = "firstRowOpen" type="number"  class="form-control"/></td>
                             <td><form:input id = "firstRowClosed" path = "firstRowClosed" type="number" class="form-control"/></td>
                             <td><form:input id = "firstRowRejected" path = "firstRowRejected" type="number" class="form-control"/></td>
                             <td><form:input id = "firstRowDefered" path = "firstRowDefered" type="number" class="form-control"/></td>
                             <td><form:input id = "firstRowReOpned" path = "firstRowReOpned" type="number" class="form-control"/></td>
                         </tr>
                         <tr>
-                           <td><form:input id = "secondRowSeverity" path = "secondRowSeverity" type="number" class="form-control"/></td>
+                           <td><form:input id = "secondRowSeverity" path = "secondRowSeverity" type="number" value="2" readonly="true" class="form-control"/></td>
                             <td><form:input id = "secondRowOpen" path = "secondRowOpen" type="number" class="form-control"/></td>
                             <td><form:input id = "secondRowClosed" path = "secondRowClosed" type="number" class="form-control"/></td>
                             <td><form:input id = "secondRowRejected" path = "secondRowRejected" type="number" class="form-control"/></td>
@@ -440,7 +440,7 @@
                             <td><form:input id = "secondRowReOpned" path = "secondRowReOpned" type="number" class="form-control"/></td>
                         </tr>
                         <tr>
-                           <td><form:input id = "thirdRowSeverity" path = "thirdRowSeverity" type="number" class="form-control"/></td>
+                           <td><form:input id = "thirdRowSeverity" path = "thirdRowSeverity" type="number" value="3" readonly="true" class="form-control"/></td>
                             <td><form:input id = "thirdRowOpen" path = "thirdRowOpen" type="number" class="form-control"/></td>
                             <td><form:input id = "thirdRowClosed" path = "thirdRowClosed" type="number" class="form-control"/></td>
                             <td><form:input id = "thirdRowRejected" path = "thirdRowRejected" type="number" class="form-control"/></td>
@@ -448,7 +448,7 @@
                             <td><form:input id = "thirdRowReOpned" path = "thirdRowReOpned" type="number" class="form-control"/></td>
                         </tr>
                         <tr>
-                            <td><form:input id = "fourthRowSeverity" path = "fourthRowSeverity" type="number" class="form-control"/></td>
+                            <td><form:input id = "fourthRowSeverity" path = "fourthRowSeverity" type="number" value="4" readonly="true" class="form-control"/></td>
                             <td><form:input id = "fourthRowOpen" path = "fourthRowOpen" type="number" class="form-control"/></td>
                             <td><form:input id = "fourthRowClosed" path = "fourthRowClosed" type="number" class="form-control"/></td>
                             <td><form:input id = "fourthRowRejected" path = "fourthRowRejected" type="number" class="form-control"/></td>

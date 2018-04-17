@@ -5,8 +5,10 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -47,7 +49,8 @@ public class TestExecutionSummary
 	@Column(name = "IS_DELTED")
 	private boolean isDeleted;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_TEST_EXEC_SMRY_ID")
 	private DailyStatusReportNFT dailyStatusReportNFT;
 
 	public long getId()

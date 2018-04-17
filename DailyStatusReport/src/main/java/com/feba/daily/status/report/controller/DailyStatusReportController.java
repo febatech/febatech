@@ -1,6 +1,7 @@
 package com.feba.daily.status.report.controller;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.feba.daily.status.report.bean.DailyStatusReportBean;
 import com.feba.daily.status.report.persistance.DailyStatusReportNFT;
+import com.feba.daily.status.report.persistance.TestDefectSummary;
 import com.feba.daily.status.report.service.CommonService;
 import com.feba.daily.status.report.util.DropDownMenu;
 
@@ -87,7 +89,6 @@ public class DailyStatusReportController
 		if(CollectionUtils.isNotEmpty(dailyStatusReportNFTs))
 		{
 			logger.debug("Daily Status Report Object : "+dailyStatusReportNFTs);
-			
 			modelAndView.addObject("dailyStatusReportNFTObject", dailyStatusReportNFTs.get(0));
 		}
 		else

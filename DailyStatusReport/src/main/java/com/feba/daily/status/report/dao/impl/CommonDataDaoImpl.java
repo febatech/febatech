@@ -58,12 +58,13 @@ public class CommonDataDaoImpl implements CommonDataDao
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DailyStatusReportNFT> searchByInsertedDateAndSPDId(Date insertedDate)
 	{
 		logger.debug("searchByInsertedDateAndSPDId() - START");
 		
-		List<DailyStatusReportNFT> dailyStatusReportNFTs = manager.createQuery("Select a From DailyStatusReportNFT a", DailyStatusReportNFT.class).getResultList();
+		List<DailyStatusReportNFT> dailyStatusReportNFTs = (List<DailyStatusReportNFT>)manager.createQuery("Select a From DailyStatusReportNFT a").getResultList();
 		
 		/*Query query = em.createQuery("from STUDENT_INFO where StudentName = ?");
         query.setParameter(1, studentName);

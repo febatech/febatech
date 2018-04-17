@@ -11,21 +11,29 @@ public class DailyStatusReportBean
 	
 	private long id;
 	
-	private String planingPhaseStart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date planingPhaseStart;
 	
-	private String planingPhaseEnd;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date planingPhaseEnd;
 	
-	private String testDesignPhaseStart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date testDesignPhaseStart;
 	
-	private String testDesignPhaseEnd;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date testDesignPhaseEnd;
 	
-	private String executionPhaseStart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date executionPhaseStart;
 	
-	private String executionPhaseEnd;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date executionPhaseEnd;
 	
-	private String signOffAndClosurePhaseStart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date signOffAndClosurePhaseStart;
 	
-	private String signOffAndClosurePhaseEnd;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date signOffAndClosurePhaseEnd;
 	
 	private String projectRelease;
 	
@@ -41,9 +49,11 @@ public class DailyStatusReportBean
 	
 	private String signOffAndClosurePhasePercentage;
 	
-	private String releaseDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date releaseDate;
 	
-	private String reportDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date reportDate;
 	
 	private String sdpId;
 	
@@ -55,7 +65,7 @@ public class DailyStatusReportBean
 	
 	private String backToGreenPlan;
 	
-	private String Owner;	
+	private String owner;	
 	
 	private String overAllPtCompletionStatus;
 	
@@ -85,9 +95,11 @@ public class DailyStatusReportBean
 	
 	private String rag;
 	
-	private String dateLogged;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date dateLogged;
 	
-	private String targetClosureDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date targetClosureDate;
 	
 	private String age;
 	
@@ -230,52 +242,52 @@ public class DailyStatusReportBean
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getPlaningPhaseStart() {
+	public Date getPlaningPhaseStart() {
 		return planingPhaseStart;
 	}
-	public void setPlaningPhaseStart(String planingPhaseStart) {
+	public void setPlaningPhaseStart(Date planingPhaseStart) {
 		this.planingPhaseStart = planingPhaseStart;
 	}
-	public String getPlaningPhaseEnd() {
+	public Date getPlaningPhaseEnd() {
 		return planingPhaseEnd;
 	}
-	public void setPlaningPhaseEnd(String planingPhaseEnd) {
+	public void setPlaningPhaseEnd(Date planingPhaseEnd) {
 		this.planingPhaseEnd = planingPhaseEnd;
 	}
-	public String getTestDesignPhaseStart() {
+	public Date getTestDesignPhaseStart() {
 		return testDesignPhaseStart;
 	}
-	public void setTestDesignPhaseStart(String testDesignPhaseStart) {
+	public void setTestDesignPhaseStart(Date testDesignPhaseStart) {
 		this.testDesignPhaseStart = testDesignPhaseStart;
 	}
-	public String getTestDesignPhaseEnd() {
+	public Date getTestDesignPhaseEnd() {
 		return testDesignPhaseEnd;
 	}
-	public void setTestDesignPhaseEnd(String testDesignPhaseEnd) {
+	public void setTestDesignPhaseEnd(Date testDesignPhaseEnd) {
 		this.testDesignPhaseEnd = testDesignPhaseEnd;
 	}
-	public String getExecutionPhaseStart() {
+	public Date getExecutionPhaseStart() {
 		return executionPhaseStart;
 	}
-	public void setExecutionPhaseStart(String executionPhaseStart) {
+	public void setExecutionPhaseStart(Date executionPhaseStart) {
 		this.executionPhaseStart = executionPhaseStart;
 	}
-	public String getExecutionPhaseEnd() {
+	public Date getExecutionPhaseEnd() {
 		return executionPhaseEnd;
 	}
-	public void setExecutionPhaseEnd(String executionPhaseEnd) {
+	public void setExecutionPhaseEnd(Date executionPhaseEnd) {
 		this.executionPhaseEnd = executionPhaseEnd;
 	}
-	public String getSignOffAndClosurePhaseStart() {
+	public Date getSignOffAndClosurePhaseStart() {
 		return signOffAndClosurePhaseStart;
 	}
-	public void setSignOffAndClosurePhaseStart(String signOffAndClosurePhaseStart) {
+	public void setSignOffAndClosurePhaseStart(Date signOffAndClosurePhaseStart) {
 		this.signOffAndClosurePhaseStart = signOffAndClosurePhaseStart;
 	}
-	public String getSignOffAndClosurePhaseEnd() {
+	public Date getSignOffAndClosurePhaseEnd() {
 		return signOffAndClosurePhaseEnd;
 	}
-	public void setSignOffAndClosurePhaseEnd(String signOffAndClosurePhaseEnd) {
+	public void setSignOffAndClosurePhaseEnd(Date signOffAndClosurePhaseEnd) {
 		this.signOffAndClosurePhaseEnd = signOffAndClosurePhaseEnd;
 	}
 	public String getProjectRelease() {
@@ -320,16 +332,16 @@ public class DailyStatusReportBean
 	public void setSignOffAndClosurePhasePercentage(String signOffAndClosurePhasePercentage) {
 		this.signOffAndClosurePhasePercentage = signOffAndClosurePhasePercentage;
 	}
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public String getReportDate() {
+	public Date getReportDate() {
 		return reportDate;
 	}
-	public void setReportDate(String reportDate) {
+	public void setReportDate(Date reportDate) {
 		this.reportDate = reportDate;
 	}
 	public String getSdpId() {
@@ -370,11 +382,11 @@ public class DailyStatusReportBean
 	}
 	public String getOwner()
 	{
-		return Owner;
+		return owner;
 	}
 	public void setOwner(String owner)
 	{
-		Owner = owner;
+		this.owner = owner;
 	}
 	public String getTrackStatus()
 	{
@@ -480,19 +492,19 @@ public class DailyStatusReportBean
 	{
 		this.rag = rag;
 	}
-	public String getDateLogged()
+	public Date getDateLogged()
 	{
 		return dateLogged;
 	}
-	public void setDateLogged(String dateLogged)
+	public void setDateLogged(Date dateLogged)
 	{
 		this.dateLogged = dateLogged;
 	}
-	public String getTargetClosureDate()
+	public Date getTargetClosureDate()
 	{
 		return targetClosureDate;
 	}
-	public void setTargetClosureDate(String targetClosureDate)
+	public void setTargetClosureDate(Date targetClosureDate)
 	{
 		this.targetClosureDate = targetClosureDate;
 	}

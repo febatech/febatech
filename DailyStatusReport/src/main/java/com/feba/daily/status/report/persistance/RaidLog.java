@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -45,10 +46,10 @@ public class RaidLog
 	private String rag;
 	
 	@Column(name = "DATE_LOGGED")
-	private String dateLogged;
+	private Date dateLogged;
 	
 	@Column(name = "TARGET_CLOSURE_DATE")
-	private String targetClosureDate;
+	private Date targetClosureDate;
 	
 	@Column(name = "AGE")
 	private String age;
@@ -70,10 +71,10 @@ public class RaidLog
 	
 	@Column(name = "IS_DELTED")
 	private boolean isDeleted;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_DAILY_STS_RPT_ID")
-	private DailyStatusReportNFT dailyStatusReportNFT;
+//	
+//	@OneToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+//	@JoinColumn(name = "FK_DAILY_STS_RPT_ID")
+//	private DailyStatusReportNFT dailyStatusReportNFT;
 
 	public int getId()
 	{
@@ -165,22 +166,22 @@ public class RaidLog
 		this.rag = rag;
 	}
 
-	public String getDateLogged()
+	public Date getDateLogged()
 	{
 		return dateLogged;
 	}
 
-	public void setDateLogged(String dateLogged)
+	public void setDateLogged(Date dateLogged)
 	{
 		this.dateLogged = dateLogged;
 	}
 
-	public String getTargetClosureDate()
+	public Date getTargetClosureDate()
 	{
 		return targetClosureDate;
 	}
 
-	public void setTargetClosureDate(String targetClosureDate)
+	public void setTargetClosureDate(Date targetClosureDate)
 	{
 		this.targetClosureDate = targetClosureDate;
 	}
@@ -255,16 +256,16 @@ public class RaidLog
 		this.isDeleted = isDeleted;
 	}
 
-	public DailyStatusReportNFT getDailyStatusReportNFT()
-	{
-		return dailyStatusReportNFT;
-	}
-
-	public void setDailyStatusReportNFT(DailyStatusReportNFT dailyStatusReportNFT)
-	{
-		this.dailyStatusReportNFT = dailyStatusReportNFT;
-	}
-	
+//	public DailyStatusReportNFT getDailyStatusReportNFT()
+//	{
+//		return dailyStatusReportNFT;
+//	}
+//
+//	public void setDailyStatusReportNFT(DailyStatusReportNFT dailyStatusReportNFT)
+//	{
+//		this.dailyStatusReportNFT = dailyStatusReportNFT;
+//	}
+//	
 	
 	
 }

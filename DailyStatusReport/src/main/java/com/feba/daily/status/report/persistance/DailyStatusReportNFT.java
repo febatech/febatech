@@ -6,10 +6,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,28 +24,28 @@ public class DailyStatusReportNFT
 	private long id;
 	
 	@Column(name = "PLANING_PHASE_START")
-	private String planingPhaseStart;
+	private Date planingPhaseStart;
 	
 	@Column(name = "PLANING_PHASE_END")
-	private String planingPhaseEnd;
+	private Date planingPhaseEnd;
 	
 	@Column(name = "TEST_DESIGN_PHASE_START")
-	private String testDesignPhaseStart;
+	private Date testDesignPhaseStart;
 	
 	@Column(name = "TEST_DESIGN_PHASE_END")
-	private String testDesignPhaseEnd;
+	private Date testDesignPhaseEnd;
 	
 	@Column(name = "EXECUTION_PHASE_START")
-	private String executionPhaseStart;
+	private Date executionPhaseStart;
 	
 	@Column(name = "EXECUTION_PHASE_END")
-	private String executionPhaseEnd;
+	private Date executionPhaseEnd;
 	
 	@Column(name = "SIGN_OFF_AND_CLOSURE_PHASE_START")
-	private String signOffAndClosurePhaseStart;
+	private Date signOffAndClosurePhaseStart;
 	
 	@Column(name = "SIGN_OFF_AND_CLOSURE_PHASE_END")
-	private String signOffAndClosurePhaseEnd;
+	private Date signOffAndClosurePhaseEnd;
 	
 	@Column(name = "PROJECT_RELEASE")
 	private String projectRelease;
@@ -67,10 +69,10 @@ public class DailyStatusReportNFT
 	private String signOffAndClosurePhasePercentage;
 	
 	@Column(name = "RELEASE_DATE")
-	private String releaseDate;
+	private Date releaseDate;
 	
 	@Column(name = "REPORT_DATE")
-	private String reportDate;
+	private Date reportDate;
 	
 	@Column(name = "SDP_ID")
 	private String sdpId;
@@ -100,7 +102,7 @@ public class DailyStatusReportNFT
 	private String backToGreenPlan;
 	
 	@Column(name = "OWNER")
-	private String Owner;	
+	private String owner;	
 	
 	@Column(name = "OVER_ALL_PT_COMPLETION_STATUS")
 	private String overAllPtCompletionStatus;
@@ -120,19 +122,21 @@ public class DailyStatusReportNFT
 	@Column(name = "SHARED_SERVICES")
 	private String sharedServices;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="RAID_ID")
+	private RaidLog raidLog;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_TEST_DGN_SMRY_ID")
 	private Set<TestDesignSummary> testDesignSummaries;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_TEST_EXEC_SMRY_ID")
 	private Set<TestExecutionSummary> testExecutionSummaries;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_TEST_DEFECT_SMRY_ID")
 	private Set<TestDefectSummary> testDefectSummaries;
-	
-	
 
 	public long getId()
 	{
@@ -144,82 +148,82 @@ public class DailyStatusReportNFT
 		this.id = id;
 	}
 
-	public String getPlaningPhaseStart()
+	public Date getPlaningPhaseStart()
 	{
 		return planingPhaseStart;
 	}
 
-	public void setPlaningPhaseStart(String planingPhaseStart)
+	public void setPlaningPhaseStart(Date planingPhaseStart)
 	{
 		this.planingPhaseStart = planingPhaseStart;
 	}
 
-	public String getPlaningPhaseEnd()
+	public Date getPlaningPhaseEnd()
 	{
 		return planingPhaseEnd;
 	}
 
-	public void setPlaningPhaseEnd(String planingPhaseEnd)
+	public void setPlaningPhaseEnd(Date planingPhaseEnd)
 	{
 		this.planingPhaseEnd = planingPhaseEnd;
 	}
 
-	public String getTestDesignPhaseStart()
+	public Date getTestDesignPhaseStart()
 	{
 		return testDesignPhaseStart;
 	}
 
-	public void setTestDesignPhaseStart(String testDesignPhaseStart)
+	public void setTestDesignPhaseStart(Date testDesignPhaseStart)
 	{
 		this.testDesignPhaseStart = testDesignPhaseStart;
 	}
 
-	public String getTestDesignPhaseEnd()
+	public Date getTestDesignPhaseEnd()
 	{
 		return testDesignPhaseEnd;
 	}
 
-	public void setTestDesignPhaseEnd(String testDesignPhaseEnd)
+	public void setTestDesignPhaseEnd(Date testDesignPhaseEnd)
 	{
 		this.testDesignPhaseEnd = testDesignPhaseEnd;
 	}
 
-	public String getExecutionPhaseStart()
+	public Date getExecutionPhaseStart()
 	{
 		return executionPhaseStart;
 	}
 
-	public void setExecutionPhaseStart(String executionPhaseStart)
+	public void setExecutionPhaseStart(Date executionPhaseStart)
 	{
 		this.executionPhaseStart = executionPhaseStart;
 	}
 
-	public String getExecutionPhaseEnd()
+	public Date getExecutionPhaseEnd()
 	{
 		return executionPhaseEnd;
 	}
 
-	public void setExecutionPhaseEnd(String executionPhaseEnd)
+	public void setExecutionPhaseEnd(Date executionPhaseEnd)
 	{
 		this.executionPhaseEnd = executionPhaseEnd;
 	}
 
-	public String getSignOffAndClosurePhaseStart()
+	public Date getSignOffAndClosurePhaseStart()
 	{
 		return signOffAndClosurePhaseStart;
 	}
 
-	public void setSignOffAndClosurePhaseStart(String signOffAndClosurePhaseStart)
+	public void setSignOffAndClosurePhaseStart(Date signOffAndClosurePhaseStart)
 	{
 		this.signOffAndClosurePhaseStart = signOffAndClosurePhaseStart;
 	}
 
-	public String getSignOffAndClosurePhaseEnd()
+	public Date getSignOffAndClosurePhaseEnd()
 	{
 		return signOffAndClosurePhaseEnd;
 	}
 
-	public void setSignOffAndClosurePhaseEnd(String signOffAndClosurePhaseEnd)
+	public void setSignOffAndClosurePhaseEnd(Date signOffAndClosurePhaseEnd)
 	{
 		this.signOffAndClosurePhaseEnd = signOffAndClosurePhaseEnd;
 	}
@@ -294,22 +298,22 @@ public class DailyStatusReportNFT
 		this.signOffAndClosurePhasePercentage = signOffAndClosurePhasePercentage;
 	}
 
-	public String getReleaseDate()
+	public Date getReleaseDate()
 	{
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate)
+	public void setReleaseDate(Date releaseDate)
 	{
 		this.releaseDate = releaseDate;
 	}
 
-	public String getReportDate()
+	public Date getReportDate()
 	{
 		return reportDate;
 	}
 
-	public void setReportDate(String reportDate)
+	public void setReportDate(Date reportDate)
 	{
 		this.reportDate = reportDate;
 	}
@@ -429,6 +433,16 @@ public class DailyStatusReportNFT
 		this.sharedServices = sharedServices;
 	}
 
+	public RaidLog getRaidLog()
+	{
+		return raidLog;
+	}
+
+	public void setRaidLog(RaidLog raidLog)
+	{
+		this.raidLog = raidLog;
+	}
+
 	public void setDeleted(boolean isDeleted)
 	{
 		this.isDeleted = isDeleted;
@@ -466,12 +480,12 @@ public class DailyStatusReportNFT
 
 	public String getOwner()
 	{
-		return Owner;
+		return owner;
 	}
 
 	public void setOwner(String owner)
 	{
-		Owner = owner;
+		this.owner = owner;
 	}
 
 	public Set<TestDesignSummary> getTestDesignSummaries()
