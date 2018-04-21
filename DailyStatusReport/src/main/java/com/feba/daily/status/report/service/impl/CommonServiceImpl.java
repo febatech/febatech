@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.NoResultException;
+
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +29,65 @@ public class CommonServiceImpl implements CommonService
 	@Autowired
 	CommonDataDao commonDataDao;
 	
+	public CommonServiceImpl()
+	{
+		BasicConfigurator.configure();
+	}
+	
 	@Override
-	public List<DailyStatusReportNFT> searchByInsertedDateAndSPDId(Date searchDate)
+	public List<DailyStatusReportNFT> searchByInsertedDateAndSPDId(Date searchDate, String spdId) throws NoResultException
 	{
 		logger.debug("searchByInsertedDateAndSPDId() - START");
 		
 		logger.debug("searchByInsertedDateAndSPDId() - END");
-		return commonDataDao.searchByInsertedDateAndSPDId(searchDate);
+		return commonDataDao.searchByInsertedDateAndSPDId(searchDate, spdId);
+	}
+	
+	@Override
+	public List<DailyStatusReportNFT> searchBySDPId(String spdId) throws NoResultException
+	{
+		// TODO Auto-generated method stub
+		logger.debug("searchBySDPId() - START");
+		
+		logger.debug("searchBySDPId() - END");
+		return commonDataDao.searchBySDPId(spdId);
+	}
+
+	@Override
+	public void deleteDailySatuReport(Long objectId)
+	{
+		logger.debug("deleteDailySatuReport() - START");
+		commonDataDao.deleteDailySatuReport(objectId);
+		logger.debug("deleteDailySatuReport() - END");
+	}
+	
+	@Override
+	public void updateDailyStatusReport(DailyStatusReportBean dailyStatusReportBean)
+	{
+		// TODO Auto-generated method stub
+		logger.debug("updateDailyStatusReport() - START");
+		DailyStatusReportNFT dailyStatusReportNFT = new DailyStatusReportNFT();
+		RaidLog raidLog = new RaidLog(); 
+	
+		
+		dailyStatusReportNFT.setInsertedDate(new Date());
+		raidLog.setInsertedDate(new Date());
+		
+		BeanUtils.copyProperties(dailyStatusReportBean, dailyStatusReportNFT);
+		BeanUtils.copyProperties(dailyStatusReportBean, raidLog);
+		//raidLog.setDailyStatusReportNFT(dailyStatusReportNFT);
+		dailyStatusReportNFT.setRaidLog(raidLog);
+		
+		Set<TestDesignSummary> testDesignSummaries = populateDesignSummary(dailyStatusReportBean);
+		Set<TestExecutionSummary> testExecutionSummaries = populateTestExecutionSummary(dailyStatusReportBean);
+		Set<TestDefectSummary> testDefectSummaries = populateTestDefectSummary(dailyStatusReportBean);
+		
+		dailyStatusReportNFT.setTestDesignSummaries(testDesignSummaries);
+		dailyStatusReportNFT.setTestExecutionSummaries(testExecutionSummaries);
+		dailyStatusReportNFT.setTestDefectSummaries(testDefectSummaries);
+		
+		commonDataDao.updateDailyStatusReport(dailyStatusReportNFT);
+		logger.debug("updateDailyStatusReport() - END");
 	}
 
 	@Override
@@ -49,6 +105,7 @@ public class CommonServiceImpl implements CommonService
 		BeanUtils.copyProperties(dailyStatusReportBean, dailyStatusReportNFT);
 		BeanUtils.copyProperties(dailyStatusReportBean, raidLog);
 		//raidLog.setDailyStatusReportNFT(dailyStatusReportNFT);
+		dailyStatusReportNFT.setRaidLog(raidLog);
 		
 		Set<TestDesignSummary> testDesignSummaries = populateDesignSummary(dailyStatusReportBean);
 		Set<TestExecutionSummary> testExecutionSummaries = populateTestExecutionSummary(dailyStatusReportBean);
@@ -58,7 +115,7 @@ public class CommonServiceImpl implements CommonService
 		dailyStatusReportNFT.setTestExecutionSummaries(testExecutionSummaries);
 		dailyStatusReportNFT.setTestDefectSummaries(testDefectSummaries);
 		
-		commonDataDao.saveRaidLog(raidLog);
+		commonDataDao.saveRaidLog(dailyStatusReportNFT);
 		
 		logger.debug("saveDailStatusReport() - END");
 	}
@@ -197,5 +254,4 @@ public class CommonServiceImpl implements CommonService
 	}
 
 
-	
 }

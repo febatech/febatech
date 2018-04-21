@@ -6,6 +6,152 @@
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+function openTotalFunction(name, data)
+{
+	var result = 0;
+	var openTotal = document.getElementById('openTotal').value;
+	var firstRowOpen = document.getElementById('firstRowOpen').value;
+	var secondRowOpen = document.getElementById('secondRowOpen').value;
+	var thirdRowOpen = document.getElementById('thirdRowOpen').value;
+	var fourthRowOpen = document.getElementById('fourthRowOpen').value;
+	if(name == 'firstRowOpen')
+	{
+		result = parseInt(secondRowOpen) + parseInt(thirdRowOpen) + parseInt(fourthRowOpen) + parseInt(data);
+	}
+	if(name == 'secondRowOpen')
+	{
+		result = parseInt(firstRowOpen) + parseInt(thirdRowOpen) + parseInt(fourthRowOpen) + parseInt(data);
+	}
+	if(name == 'thirdRowOpen')
+	{
+		result = parseInt(firstRowOpen) + parseInt(secondRowOpen) + parseInt(fourthRowOpen) + parseInt(data);
+	}
+	if(name == 'fourthRowOpen')
+	{
+		result = parseInt(firstRowOpen) + parseInt(secondRowOpen) + parseInt(thirdRowOpen) + parseInt(data) ;
+	}
+    if (!isNaN(result)) {
+        document.getElementById('openTotal').value = result;
+    }
+}
+
+function closedTotalFunction(name, data)
+{
+	var result = 0;
+	var ClosedTotal = document.getElementById('closedTotal').value;
+	var firstRowClosed = document.getElementById('firstRowClosed').value;
+	var secondRowClosed = document.getElementById('secondRowClosed').value;
+	var thirdRowClosed = document.getElementById('thirdRowClosed').value;
+	var fourthRowClosed = document.getElementById('fourthRowClosed').value;
+	if(name == 'firstRowClosed')
+	{
+		result = parseInt(secondRowClosed) + parseInt(thirdRowClosed) + parseInt(fourthRowClosed) + parseInt(data);
+	}
+	if(name == 'secondRowClosed')
+	{
+		result = parseInt(firstRowClosed) + parseInt(thirdRowClosed) + parseInt(fourthRowClosed) + parseInt(data);
+	}
+	if(name == 'thirdRowClosed')
+	{
+		result = parseInt(firstRowClosed) + parseInt(secondRowClosed) + parseInt(fourthRowClosed) + parseInt(data);
+	}
+	if(name == 'fourthRowClosed')
+	{
+		result = parseInt(firstRowClosed) + parseInt(secondRowClosed) + parseInt(thirdRowClosed) + parseInt(data) ;
+	}
+    if (!isNaN(result)) {
+        document.getElementById('closedTotal').value = result;
+    }
+}
+
+function rejectedTotalFunction(name, data)
+{
+	var result = 0;
+	var RejectedTotal = document.getElementById('rejectedTotal').value;
+	var firstRowRejected = document.getElementById('firstRowRejected').value;
+	var secondRowRejected = document.getElementById('secondRowRejected').value;
+	var thirdRowRejected = document.getElementById('thirdRowRejected').value;
+	var fourthRowRejected = document.getElementById('fourthRowRejected').value;
+	if(name == 'firstRowRejected')
+	{
+		result = parseInt(secondRowRejected) + parseInt(thirdRowRejected) + parseInt(fourthRowRejected) + parseInt(data);
+	}
+	if(name == 'secondRowRejected')
+	{
+		result = parseInt(firstRowRejected) + parseInt(thirdRowRejected) + parseInt(fourthRowRejected) + parseInt(data);
+	}
+	if(name == 'thirdRowRejected')
+	{
+		result = parseInt(firstRowRejected) + parseInt(secondRowRejected) + parseInt(fourthRowRejected) + parseInt(data);
+	}
+	if(name == 'fourthRowRejected')
+	{
+		result = parseInt(firstRowRejected) + parseInt(secondRowRejected) + parseInt(thirdRowRejected) + parseInt(data) ;
+	}
+    if (!isNaN(result)) {
+        document.getElementById('rejectedTotal').value = result;
+    }
+}
+
+function deferedTotalFunction(name, data)
+{
+	var result = 0;
+	var DeferedTotal = document.getElementById('defferedTotal').value;
+	var firstRowDefered = document.getElementById('firstRowDefered').value;
+	var secondRowDefered = document.getElementById('secondRowDefered').value;
+	var thirdRowDefered = document.getElementById('thirdRowDefered').value;
+	var fourthRowDefered = document.getElementById('fourthRowDefered').value;
+	if(name == 'firstRowDefered')
+	{
+		result = parseInt(secondRowDefered) + parseInt(thirdRowDefered) + parseInt(fourthRowDefered) + parseInt(data);
+	}
+	if(name == 'secondRowDefered')
+	{
+		result = parseInt(firstRowDefered) + parseInt(thirdRowDefered) + parseInt(fourthRowDefered) + parseInt(data);
+	}
+	if(name == 'thirdRowDefered')
+	{
+		result = parseInt(firstRowDefered) + parseInt(secondRowDefered) + parseInt(fourthRowDefered) + parseInt(data);
+	}
+	if(name == 'fourthRowDefered')
+	{
+		result = parseInt(firstRowDefered) + parseInt(secondRowDefered) + parseInt(thirdRowDefered) + parseInt(data) ;
+	}
+    if (!isNaN(result)) {
+        document.getElementById('defferedTotal').value = result;
+    }
+}
+
+function reOpnedTotalFunction(name, data)
+{
+	var result = 0;
+	var ReOpnedTotal = document.getElementById('reopenedTotal').value;
+	var firstRowReOpned = document.getElementById('firstRowReOpned').value;
+	var secondRowReOpned = document.getElementById('secondRowReOpned').value;
+	var thirdRowReOpned = document.getElementById('thirdRowReOpned').value;
+	var fourthRowReOpned = document.getElementById('fourthRowReOpned').value;
+	if(name == 'firstRowReOpned')
+	{
+		result = parseInt(secondRowReOpned) + parseInt(thirdRowReOpned) + parseInt(fourthRowReOpned) + parseInt(data);
+	}
+	if(name == 'secondRowReOpned')
+	{
+		result = parseInt(firstRowReOpned) + parseInt(thirdRowReOpned) + parseInt(fourthRowReOpned) + parseInt(data);
+	}
+	if(name == 'thirdRowReOpned')
+	{
+		result = parseInt(firstRowReOpned) + parseInt(secondRowReOpned) + parseInt(fourthRowReOpned) + parseInt(data);
+	}
+	if(name == 'fourthRowReOpned')
+	{
+		result = parseInt(firstRowReOpned) + parseInt(secondRowReOpned) + parseInt(thirdRowReOpned) + parseInt(data) ;
+	}
+    if (!isNaN(result)) {
+        document.getElementById('reopenedTotal').value = result;
+    }
+}
+</script>
 
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -424,45 +570,45 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><form:input id = "firstRowSeverity" path = "firstRowSeverity" value="1" type="number" readonly="true" class="form-control"/></td>
-                            <td><form:input id = "firstRowOpen" path = "firstRowOpen" type="number"  class="form-control"/></td>
-                            <td><form:input id = "firstRowClosed" path = "firstRowClosed" type="number" class="form-control"/></td>
-                            <td><form:input id = "firstRowRejected" path = "firstRowRejected" type="number" class="form-control"/></td>
-                            <td><form:input id = "firstRowDefered" path = "firstRowDefered" type="number" class="form-control"/></td>
-                            <td><form:input id = "firstRowReOpned" path = "firstRowReOpned" type="number" class="form-control"/></td>
+                            <td><form:input id = "firstRowSeverity" path = "firstRowSeverity" value="1" type="number" readonly="true" class="form-control" /></td>
+                            <td><form:input id = "firstRowOpen" path = "firstRowOpen" type="number"  class="form-control" onchange="openTotalFunction('firstRowOpen', this.value)"/></td>
+                            <td><form:input id = "firstRowClosed" path = "firstRowClosed" type="number" class="form-control" onchange="closedTotalFunction('firstRowClosed', this.value)"/></td>
+                            <td><form:input id = "firstRowRejected" path = "firstRowRejected" type="number" class="form-control" onchange="rejectedTotalFunction('firstRowRejected', this.value)"/></td>
+                            <td><form:input id = "firstRowDefered" path = "firstRowDefered" type="number" class="form-control" onchange="deferedTotalFunction('firstRowDefered', this.value)"/></td>
+                            <td><form:input id = "firstRowReOpned" path = "firstRowReOpned" type="number" class="form-control" onchange="reOpnedTotalFunction('firstRowReOpned', this.value)"/></td>
                         </tr>
                         <tr>
                            <td><form:input id = "secondRowSeverity" path = "secondRowSeverity" type="number" value="2" readonly="true" class="form-control"/></td>
-                            <td><form:input id = "secondRowOpen" path = "secondRowOpen" type="number" class="form-control"/></td>
-                            <td><form:input id = "secondRowClosed" path = "secondRowClosed" type="number" class="form-control"/></td>
-                            <td><form:input id = "secondRowRejected" path = "secondRowRejected" type="number" class="form-control"/></td>
-                            <td><form:input id = "secondRowDefered" path = "secondRowDefered" type="number" class="form-control"/></td>
-                            <td><form:input id = "secondRowReOpned" path = "secondRowReOpned" type="number" class="form-control"/></td>
+                            <td><form:input id = "secondRowOpen" path = "secondRowOpen" type="number" class="form-control" onchange="openTotalFunction('secondRowOpen',this.value)"/></td>
+                            <td><form:input id = "secondRowClosed" path = "secondRowClosed" type="number" class="form-control" onchange="closedTotalFunction('secondRowClosed', this.value)"/></td>
+                            <td><form:input id = "secondRowRejected" path = "secondRowRejected" type="number" class="form-control" onchange="rejectedTotalFunction('secondRowRejected', this.value)"/></td>
+                            <td><form:input id = "secondRowDefered" path = "secondRowDefered" type="number" class="form-control" onchange="deferedTotalFunction('secondRowDefered', this.value)"/></td>
+                            <td><form:input id = "secondRowReOpned" path = "secondRowReOpned" type="number" class="form-control" onchange="reOpnedTotalFunction('secondRowReOpned', this.value)"/></td>
                         </tr>
                         <tr>
                            <td><form:input id = "thirdRowSeverity" path = "thirdRowSeverity" type="number" value="3" readonly="true" class="form-control"/></td>
-                            <td><form:input id = "thirdRowOpen" path = "thirdRowOpen" type="number" class="form-control"/></td>
-                            <td><form:input id = "thirdRowClosed" path = "thirdRowClosed" type="number" class="form-control"/></td>
-                            <td><form:input id = "thirdRowRejected" path = "thirdRowRejected" type="number" class="form-control"/></td>
-                            <td><form:input id = "thirdRowDefered" path = "thirdRowDefered" type="number" class="form-control"/></td>
-                            <td><form:input id = "thirdRowReOpned" path = "thirdRowReOpned" type="number" class="form-control"/></td>
+                            <td><form:input id = "thirdRowOpen" path = "thirdRowOpen" type="number" class="form-control" onchange="openTotalFunction('thirdRowOpen',this.value)"/></td>
+                            <td><form:input id = "thirdRowClosed" path = "thirdRowClosed" type="number" class="form-control" onchange="closedTotalFunction('thirdRowClosed', this.value)"/></td>
+                            <td><form:input id = "thirdRowRejected" path = "thirdRowRejected" type="number" class="form-control" onchange="rejectedTotalFunction('thirdRowRejected', this.value)"/></td>
+                            <td><form:input id = "thirdRowDefered" path = "thirdRowDefered" type="number" class="form-control" onchange="deferedTotalFunction('thirdRowDefered', this.value)"/></td>
+                            <td><form:input id = "thirdRowReOpned" path = "thirdRowReOpned" type="number" class="form-control" onchange="reOpnedTotalFunction('thirdRowReOpned', this.value)"/></td>
                         </tr>
                         <tr>
                             <td><form:input id = "fourthRowSeverity" path = "fourthRowSeverity" type="number" value="4" readonly="true" class="form-control"/></td>
-                            <td><form:input id = "fourthRowOpen" path = "fourthRowOpen" type="number" class="form-control"/></td>
-                            <td><form:input id = "fourthRowClosed" path = "fourthRowClosed" type="number" class="form-control"/></td>
-                            <td><form:input id = "fourthRowRejected" path = "fourthRowRejected" type="number" class="form-control"/></td>
-                            <td><form:input id = "fourthRowDefered" path = "fourthRowDefered" type="number" class="form-control"/></td>
-                            <td><form:input id = "fourthRowReOpned" path = "fourthRowReOpned" type="number" class="form-control"/></td>
+                            <td><form:input id = "fourthRowOpen" path = "fourthRowOpen" type="number" class="form-control" onchange="openTotalFunction('fourthRowOpen',this.value)"/></td>
+                            <td><form:input id = "fourthRowClosed" path = "fourthRowClosed" type="number" class="form-control" onchange="closedTotalFunction('fourthRowClosed', this.value)"/></td>
+                            <td><form:input id = "fourthRowRejected" path = "fourthRowRejected" type="number" class="form-control" onchange="rejectedTotalFunction('fourthRowRejected', this.value)"/></td>
+                            <td><form:input id = "fourthRowDefered" path = "fourthRowDefered" type="number" class="form-control" onchange="deferedTotalFunction('fourthRowDefered', this.value)"/></td>
+                            <td><form:input id = "fourthRowReOpned" path = "fourthRowReOpned" type="number" class="form-control" onchange="reOpnedTotalFunction('fourthRowReOpned', this.value)"/></td>
                         </tr>
 
                         <tr>
                             <td>Total</td>
-                            <td><input type="number" class="form-control"/></td>
-                            <td><input type="number" class="form-control"/></td>
-                            <td><input type="number" class="form-control"/></td>
-                            <td><input type="number" class="form-control"/></td>
-                            <td><input type="number" class="form-control"/></td>
+                            <td><input id="openTotal" type="number" class="form-control"/></td>
+                            <td><input id="closedTotal"  type="number" class="form-control"/></td>
+                            <td><input id="rejectedTotal"  type="number" class="form-control"/></td>
+                            <td><input id="defferedTotal"  type="number" class="form-control"/></td>
+                            <td><input id="reopenedTotal"  type="number" class="form-control"/></td>
                         </tr>
 
                     </tbody>

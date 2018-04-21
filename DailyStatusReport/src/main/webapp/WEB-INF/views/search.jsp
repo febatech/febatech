@@ -24,36 +24,43 @@
 
 <body>
 <form:form id="searchForm"  modelAttribute="searchForm" method="post" action="searchDailyStaturReport.html">
-<c:choose>
-	<c:when test="${empty dailyStatusReportNFTObject}">
+
 	    <div class="container" style="margin-bottom: 100px;">
 	        <div class="col-lg-6 form-search ">
-	            <h3 style="text-align: center;">Get Data by Date</h3>
+	            <h3 style="text-align: center;">Get Data by Date and SDP Id</h3>
 	            <br><br>
 	            <form:input id = "searchDate" path = "searchDate" pattern="MM/dd/yyyy" type="date" class="form-control search-input"/>
+	            
+	            <form:input id = "searchSdpId" path = "searchSdpId" placeholder="SDP Id" type="text" class="form-control search-input"/>
 	            <h2 class="button-h2" style="text-align: center;"> <button class="btn btn-danger buttons col-lg-2 col-md-2 col-sm-2">Search</button>
-	                <button class="btn btn-primary buttons  edit col-lg-2 col-md-2 col-sm-2">Edit</button>
+	                <button class="btn btn-primary buttons  edit col-lg-2 col-md-2 col-sm-2" type="button"  
+	                onclick="location.href='loadUpdateDelete.html?searchDate='+document.getElementById('searchDate').value+'&searchSdpId='+document.getElementById('searchSdpId').value;">Edit</button>
 	            </h2>
+	            <c:choose>
+			 	<c:when test="${not empty msg}">
+					<div class="alert alert-${css} alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" 
+		                                aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<strong>${msg}</strong>
+					</div>
+				</c:when>
+			</c:choose>
 	        </div>
-	
+			
 	    </div>
-	</c:when>
-	
-	<c:otherwise>
+<c:choose>
+	<c:when test="${false == isFirstTimeSearch}">
 
 		    <div class="container-fluid">
-		        
-		
 		            <div class="col-lg-12">
 		                <table class="table">
 		                    <thead>
 		                        <tr>
-		                            <th colspan="">Daily Status Report - NFT - 03/19/2018</th>
+		                            <%-- <th colspan="">Daily Status Report - NFT - ${${dailyStatusReportNFTObject.sdpId}}</th> --%>
 		                        </tr>
-		
 		                    </thead>
-		
-		
 		                </table>
 		
 		                <!-- <table class="table col-lg-4">
@@ -386,13 +393,19 @@
 		                    	</c:forEach>
 		                        <tr>
 		                            <td>Total</td>
-		                            
+		                            <c:forEach items="${dailyStatusReportNFTObject.testDefectSummaries}" var="entry">
+		                    			<td>${entry.opne}</td>
+		                    			<td>${entry.closed}</td>		                    			
+		                    			<td>${entry.rejected}</td>
+		                    			<td>${entry.defered}</td>
+		                    			<td>${entry.reOpened}</td>
+		                    	</c:forEach>
 		                        </tr>
 		                    </tbody>
 		                </table>
 		            </div>
 		    </div>
-		</c:otherwise>
+		</c:when>
 	</c:choose>
 </form:form>
 </body>

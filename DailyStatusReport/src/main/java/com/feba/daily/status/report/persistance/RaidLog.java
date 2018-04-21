@@ -20,9 +20,6 @@ public class RaidLog
 	@GeneratedValue
 	@Column(name = "ID")
 	private int id;
-//	
-//	@Column(name = "FK_DAILY_STATUS_REPORT_ID")
-//	private long dailyStatusReportId;
 	
 	@Column(name = "TYPE")
 	private String type;
@@ -72,9 +69,9 @@ public class RaidLog
 	@Column(name = "IS_DELTED")
 	private boolean isDeleted;
 //	
-//	@OneToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
-//	@JoinColumn(name = "FK_DAILY_STS_RPT_ID")
-//	private DailyStatusReportNFT dailyStatusReportNFT;
+	@OneToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_DAILY_STS_RPT_ID")
+	private DailyStatusReportNFT dailyStatusReportNFT;
 
 	public int getId()
 	{
@@ -256,16 +253,16 @@ public class RaidLog
 		this.isDeleted = isDeleted;
 	}
 
-//	public DailyStatusReportNFT getDailyStatusReportNFT()
-//	{
-//		return dailyStatusReportNFT;
-//	}
-//
-//	public void setDailyStatusReportNFT(DailyStatusReportNFT dailyStatusReportNFT)
-//	{
-//		this.dailyStatusReportNFT = dailyStatusReportNFT;
-//	}
-//	
+	public DailyStatusReportNFT getDailyStatusReportNFT()
+	{
+		return dailyStatusReportNFT;
+	}
+
+	public void setDailyStatusReportNFT(DailyStatusReportNFT dailyStatusReportNFT)
+	{
+		this.dailyStatusReportNFT = dailyStatusReportNFT;
+	}
+	
 	
 	
 }

@@ -234,7 +234,9 @@ public class DailyStatusReportBean
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date searchDate;
 	
+	private String searchSdpId;
 	
+//	private Date insertedDate;
 	
 	public long getId() {
 		return id;
@@ -1020,5 +1022,23 @@ public class DailyStatusReportBean
 	{
 		this.searchDate = searchDate;
 	}
+	public String getSearchSdpId()
+	{
+		return searchSdpId;
+	}
+	public void setSearchSdpId(String searchSdpId)
+	{
+		this.searchSdpId = searchSdpId;
+	}
+	/*public Date getInsertedDate()
+	{
+		return insertedDate;
+	}
+	public void setInsertedDate(Date insertedDate)
+	{
+		this.insertedDate = insertedDate;
+	}*/
+	
+
 	
 }

@@ -123,7 +123,7 @@ public class DailyStatusReportNFT
 	private String sharedServices;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="RAID_ID")
+	@JoinColumn(name="FK_DAILY_STS_RPT_ID")
 	private RaidLog raidLog;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
