@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "taj" class = "com.feba.spring.hotel.vendor.TajHotel"/>
+   <bean id = "sahara" class ="com.feba.spring.hotel.vendor.SaharaHotel"/>
+   
+   <bean id = "bookingService" class="com.feba.spring.customer.BookingService">
+   		 <property name="hotelBooking"><ref bean="taj"/></property>
+   		<!-- <constructor-arg><ref bean="taj"/></constructor-arg>  -->
+   </bean>
+   
+    <bean id = "serviceA" class="com.feba.spring.circular.injection.ServiceA">
+   		  <property name="serviceB"><ref bean="serviceB"/></property>
+   		<!-- <constructor-arg><ref bean="serviceB"/></constructor-arg> --> 
+   </bean>
+    <bean id = "serviceB" class="com.feba.spring.circular.injection.ServiceB">
+   		 <property name="serviceA"><ref bean="serviceA"/></property>
+   		<!-- <constructor-arg><ref bean="serviceA"/></constructor-arg>  -->
+   		
+   		<!--  <property name="test" value="123"/>
+   			  <property name="sampleArray/sampleList">
+   			  <list>
+   			  	<value>Sam</value>
+   			  	<value>Jam</value>
+   			  </list>
+   			  </property>
+   			  
+   			  <property name="sampleMap">
+   			  <map>
+   			  	<entry key ="sam" value="Sam"/>
+   			  	
+   			  	<entry>
+   			  	<key>sam</key>
+   			  	<value>Sam</value>
+   			  	</entry>
+   			  	
+   			  	<entry key="sam">
+   			  		<value>Sam</value>
+   			  	</entry>
+   			  	
+   			  </map>
+   			  </property>
+   			  
+   			   <property name="sampleSet">
+   			  <set>
+   			  	<value>Sam</value>
+   			  	<value>Jam</value>
+   			  </set>
+   			  </property>
+   			  
+   			   <property name="sampleProperties">
+   			  <props>
+   			  	<prop key="sam">Sam</prop>
+   			  </props>
+   			  </property>
+   			  
+   			  
+   			  
+   		
+   		
+   		-->
+   </bean>
+
+</beans>
