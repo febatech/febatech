@@ -11,11 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="DAILY_STATUS_REPORT_NFT")
+@Table(name="DAILY_STATUS_REPORT_NFT", uniqueConstraints = { @UniqueConstraint( columnNames = { "INSERTED_DATE", "SDP_ID" } ) })
+//, uniqueConstraints = { @UniqueConstraint( columnNames = { "INSERTED_DATE", "SDP_ID" } ) }
 public class DailyStatusReportNFT 
 {
 	@Id
@@ -24,27 +27,35 @@ public class DailyStatusReportNFT
 	private long id;
 	
 	@Column(name = "PLANING_PHASE_START")
+	@Temporal(TemporalType.DATE)
 	private Date planingPhaseStart;
 	
 	@Column(name = "PLANING_PHASE_END")
+	@Temporal(TemporalType.DATE)
 	private Date planingPhaseEnd;
 	
 	@Column(name = "TEST_DESIGN_PHASE_START")
+	@Temporal(TemporalType.DATE)
 	private Date testDesignPhaseStart;
 	
 	@Column(name = "TEST_DESIGN_PHASE_END")
+	@Temporal(TemporalType.DATE)
 	private Date testDesignPhaseEnd;
 	
 	@Column(name = "EXECUTION_PHASE_START")
+	@Temporal(TemporalType.DATE)
 	private Date executionPhaseStart;
 	
 	@Column(name = "EXECUTION_PHASE_END")
+	@Temporal(TemporalType.DATE)
 	private Date executionPhaseEnd;
 	
 	@Column(name = "SIGN_OFF_AND_CLOSURE_PHASE_START")
+	@Temporal(TemporalType.DATE)
 	private Date signOffAndClosurePhaseStart;
 	
 	@Column(name = "SIGN_OFF_AND_CLOSURE_PHASE_END")
+	@Temporal(TemporalType.DATE)
 	private Date signOffAndClosurePhaseEnd;
 	
 	@Column(name = "PROJECT_RELEASE")
@@ -68,22 +79,29 @@ public class DailyStatusReportNFT
 	@Column(name = "SIGN_OFF_AND_CLOSURE_PHASE_PERCENTAGE")
 	private String signOffAndClosurePhasePercentage;
 	
+	@Column(name = "OVER_ALL_PT_COMPLETION_STATUS_PERCENTAGE")
+	private String overAllPtCompletionStatusPercentage;
+	
 	@Column(name = "RELEASE_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date releaseDate;
 	
-	@Column(name = "REPORT_DATE")
+	@Column(name = "REPORT_DATE", updatable=false)
+	@Temporal(TemporalType.DATE)
 	private Date reportDate;
 	
-	@Column(name = "SDP_ID")
+	@Column(name = "SDP_ID", updatable=false)
 	private String sdpId;
 	
 	@Column(name = "CODE_BUILD_VERSION_TEST_ENV")
 	private String codeBuildVersionTestEnv;
 	
-	@Column(name = "INSERTED_DATE")
+	@Column(name = "INSERTED_DATE", updatable=false)
+	@Temporal(TemporalType.DATE)
 	private Date insertedDate;
 	
 	@Column(name = "MODIFIED_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
 	
 	@Column(name = "IS_ENABLED")
@@ -122,9 +140,9 @@ public class DailyStatusReportNFT
 	@Column(name = "SHARED_SERVICES")
 	private String sharedServices;
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="FK_DAILY_STS_RPT_ID")
-	private RaidLog raidLog;
+	private Set<RaidLog> raidLogs;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_TEST_DGN_SMRY_ID")
@@ -293,6 +311,16 @@ public class DailyStatusReportNFT
 		return signOffAndClosurePhasePercentage;
 	}
 
+	public String getOverAllPtCompletionStatusPercentage()
+	{
+		return overAllPtCompletionStatusPercentage;
+	}
+
+	public void setOverAllPtCompletionStatusPercentage(String overAllPtCompletionStatusPercentage)
+	{
+		this.overAllPtCompletionStatusPercentage = overAllPtCompletionStatusPercentage;
+	}
+
 	public void setSignOffAndClosurePhasePercentage(String signOffAndClosurePhasePercentage)
 	{
 		this.signOffAndClosurePhasePercentage = signOffAndClosurePhasePercentage;
@@ -433,14 +461,14 @@ public class DailyStatusReportNFT
 		this.sharedServices = sharedServices;
 	}
 
-	public RaidLog getRaidLog()
+	public Set<RaidLog> getRaidLogs()
 	{
-		return raidLog;
+		return raidLogs;
 	}
 
-	public void setRaidLog(RaidLog raidLog)
+	public void setRaidLogs(Set<RaidLog> raidLogs)
 	{
-		this.raidLog = raidLog;
+		this.raidLogs = raidLogs;
 	}
 
 	public void setDeleted(boolean isDeleted)

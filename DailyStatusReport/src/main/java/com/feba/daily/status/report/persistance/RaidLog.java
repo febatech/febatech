@@ -9,8 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "RAID_LOG")
@@ -19,7 +21,7 @@ public class RaidLog
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private int id;
+	private long id;
 	
 	@Column(name = "TYPE")
 	private String type;
@@ -43,9 +45,11 @@ public class RaidLog
 	private String rag;
 	
 	@Column(name = "DATE_LOGGED")
+	@Temporal(TemporalType.DATE)
 	private Date dateLogged;
 	
 	@Column(name = "TARGET_CLOSURE_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date targetClosureDate;
 	
 	@Column(name = "AGE")
@@ -57,10 +61,12 @@ public class RaidLog
 	@Column(name = "BACK_TO_GREEN_PLAN")
 	private String raidBackToGreenPlan;
 	
-	@Column(name = "INSERTED_DATE")
+	@Column(name = "INSERTED_DATE", updatable=false)
+	@Temporal(TemporalType.DATE)
 	private Date insertedDate;
 	
 	@Column(name = "MODIFIED_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
 	
 	@Column(name = "IS_ENABLED")
@@ -69,16 +75,16 @@ public class RaidLog
 	@Column(name = "IS_DELTED")
 	private boolean isDeleted;
 //	
-	@OneToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_DAILY_STS_RPT_ID")
 	private DailyStatusReportNFT dailyStatusReportNFT;
 
-	public int getId()
+	public long getId()
 	{
 		return id;
 	}
 
-	public void setId(int id)
+	public void setId(long id)
 	{
 		this.id = id;
 	}

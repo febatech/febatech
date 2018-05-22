@@ -19,4 +19,10 @@ public interface CommonService
 	public void updateDailyStatusReport(DailyStatusReportBean dailyStatusReportBean);
 	
 	public void deleteDailySatuReport(Long objectId);
+	
+	public void deleteRaidLogById(Long objectId);
+	
+	public void deleteTestDesignSummaryById(Long objectId);
+	
+	public void deleteTestExecutionSummaryById(Long objectId);
 }

@@ -11,12 +11,13 @@ import javax.persistence.Query;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.feba.daily.status.report.dao.CommonDataDao;
 import com.feba.daily.status.report.persistance.DailyStatusReportNFT;
-import com.feba.daily.status.report.persistance.RaidLogTestDesignSummary;
+import com.feba.daily.status.report.persistance.RaidLog;
 import com.feba.daily.status.report.util.DailyStatusReportUtil;
 
 @Repository
@@ -44,23 +45,10 @@ public class CommonDataDaoImpl implements CommonDataDao
 	}
 
 	@Override
-	public void saveRaidLogTestDesignSummary(RaidLogTestDesignSummary raidLogTestDesignSummary) throws Exception
-	{
-		logger.debug("saveRaidLogTestDesignSummary() - START");
-		
-		manager.persist(raidLogTestDesignSummary);
-		
-		logger.debug("saveRaidLogTestDesignSummary() - END");
-		
-	}
-
-	@Override
 	public void saveRaidLog(DailyStatusReportNFT dailyStatusReportNFT) throws Exception
 	{
 		logger.debug("saveRaidLogTestDesignSummary() - START");
-		
 		manager.persist(dailyStatusReportNFT);
-		
 		logger.debug("saveRaidLogTestDesignSummary() - END");
 		
 	}
@@ -75,7 +63,7 @@ public class CommonDataDaoImpl implements CommonDataDao
 		String tempDate = DailyStatusReportUtil.getDateFormat("yyyy-MM-dd").format(insertedDate);
 		Date inputDate = DailyStatusReportUtil.getDateObject("yyyy-MM-dd", tempDate);
 //		List<DailyStatusReportNFT> dailyStatusReportNFTs = (List<DailyStatusReportNFT>)manager.createQuery("Select a From DailyStatusReportNFT a").getResultList();
-		Query query = manager.createQuery("Select dsr from DailyStatusReportNFT dsr where dsr.insertedDate >=:arg1 AND dsr.sdpId =:arg2");
+		Query query = manager.createQuery("Select dsr from DailyStatusReportNFT dsr where dsr.reportDate >=:arg1 AND dsr.sdpId =:arg2");
 		query.setParameter("arg1", inputDate);
 		query.setParameter("arg2", spdId);
 		DailyStatusReportNFT dailyStatusReportNFT = (DailyStatusReportNFT) query.getSingleResult();
@@ -105,7 +93,9 @@ public class CommonDataDaoImpl implements CommonDataDao
 	public void updateDailyStatusReport(DailyStatusReportNFT dailyStatusReportNFT)
 	{
 		logger.debug("updateDailyStatusReport() - START");
-		manager.merge(dailyStatusReportNFT);
+		DailyStatusReportNFT dailyStatusReportNFT2= (DailyStatusReportNFT)manager.find(DailyStatusReportNFT.class ,dailyStatusReportNFT.getId());
+		BeanUtils.copyProperties(dailyStatusReportNFT, dailyStatusReportNFT2);
+		manager.merge(dailyStatusReportNFT2);
 		logger.debug("updateDailyStatusReport() - END");
 	}
 
@@ -118,6 +108,40 @@ public class CommonDataDaoImpl implements CommonDataDao
 		DailyStatusReportNFT dailyStatusReportNFT = (DailyStatusReportNFT) query.getSingleResult();
 		manager.remove(dailyStatusReportNFT);
 		logger.debug("deleteDailySatuReport() - END");
+		
+	}
+
+	@Override
+	public void deleteRaidLogById(Long objectId)
+	{
+		logger.debug("deleteRaidLogById() - START");
+		/*Query query = manager.createQuery("Select rd from RaidLog rd where rd.id =:arg1");
+		query.setParameter("arg1", objectId);
+		RaidLog raidLog  = (RaidLog) query.getSingleResult();
+		manager.remove(raidLog);*/
+		Query query = manager.createNativeQuery("DELETE FROM RAID_LOG WHERE ID = " + objectId);
+		query.executeUpdate();
+		logger.debug("deleteRaidLogById() - END");
+		
+	}
+
+	@Override
+	public void deleteTestDesignSummaryById(Long objectId)
+	{
+		logger.debug("deleteTestDesignSummaryById() - START");
+		Query query = manager.createNativeQuery("DELETE FROM TEST_DESIGN_SUMMARY WHERE TEST_DGN_SMRY_ID = " + objectId);
+		query.executeUpdate();
+		logger.debug("deleteTestDesignSummaryById() - END");
+		
+	}
+
+	@Override
+	public void deleteTestExecutionSummaryById(Long objectId)
+	{
+		logger.debug("deleteTestExecutionSummaryById() - START");
+		Query query = manager.createNativeQuery("DELETE FROM TEST_EXECUTION_SUMMARY WHERE TEST_EXEC_SMRY_ID = " + objectId);
+		query.executeUpdate();
+		logger.debug("deleteTestExecutionSummaryById() - END");
 		
 	}
 

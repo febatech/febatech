@@ -5,16 +5,11 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import com.feba.daily.status.report.bean.DailyStatusReportBean;
 import com.feba.daily.status.report.persistance.DailyStatusReportNFT;
-import com.feba.daily.status.report.persistance.RaidLog;
-import com.feba.daily.status.report.persistance.RaidLogTestDesignSummary;
 
 public interface CommonDataDao 
 {
 	public void saveNFT(DailyStatusReportNFT dailyStatusReportNFT) throws Exception;
-	
-	public void saveRaidLogTestDesignSummary(RaidLogTestDesignSummary raidLogTestDesignSummary) throws Exception;
 	
 	public void saveRaidLog(DailyStatusReportNFT dailyStatusReportNFT) throws Exception;
 	
@@ -25,4 +20,10 @@ public interface CommonDataDao
 	public void updateDailyStatusReport(DailyStatusReportNFT dailyStatusReportNFT);
 	
 	public void deleteDailySatuReport(Long objectId);
+	
+	public void deleteRaidLogById(Long objectId);
+	
+	public void deleteTestDesignSummaryById(Long objectId);
+	
+	public void deleteTestExecutionSummaryById(Long objectId);
 }
