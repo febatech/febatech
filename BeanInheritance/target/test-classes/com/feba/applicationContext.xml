@@ -6,6 +6,12 @@
    	<bean id="hundaiI10Base" class="com.feba.spring.bean.inheritance.HyundaiI10" abstract="true">
    		<property name="makeBy" value="Hyundai"/>
    		<property name="engineCC" value="1086"/>
+   		<property name="accessories">
+   		<list>
+   			<value>ABS</value>
+   			<value>Driver Airbag</value>
+   		</list>
+   		</property>
    	</bean>
    	
    	
@@ -14,19 +20,43 @@
    	<bean id="magna" class="com.feba.spring.bean.inheritance.HyundaiI10" parent="baseModel">
    		<property name="id" value="TS10AB1234"/>
    		<property name="varient" value="Magna"/>
+   		<property name="accessories">
+   		<list>
+   			<value>Passenger Airbag</value>
+   			<value>Sound System</value>
+   		</list>
+   		</property>
    	</bean>
    	
    	<bean id="sportz" class="com.feba.spring.bean.inheritance.HyundaiI10" parent="baseModel">
    		<property name="id" value="TS10AB2345"/>
    		<property name="varient" value="SportZ"/>
+   		<property name="accessories">
+   		<list merge="true">
+   			<value>A/C</value>
+   			<value>Sound System</value>
+   		</list>
+   		</property>
    	</bean>
    	<bean id="asta" class="com.feba.spring.bean.inheritance.HyundaiI10" parent="hundaiI10Base">
    		<property name="id" value="TS10AB3456"/>
    		<property name="varient" value="Asta"/>
+   		<property name="accessories">
+   		<list merge="true">
+   			<value>A/C</value>
+   			<value>Tubeless Tyres</value>
+   		</list>
+   		</property>
    	</bean>
    	<bean id="base" class="com.feba.spring.bean.inheritance.HyundaiI10" parent="hundaiI10Base">
    		<property name="id" value="TS10AB4567"/>
    		<property name="varient" value="Base"/>
+   		<property name="accessories">
+   		<list merge="true">
+   			<value>Sound System</value>
+   			<value>Tubeless Tyres</value>
+   		</list>
+   		</property>
    	</bean>
    
    </beans>
