@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TEST_DEFECT_SUMMARY")
@@ -24,7 +26,7 @@ public class TestDefectSummary
 	@Column(name = "SEVERITY")
 	private long severity;
 	
-	@Column(name = "OPEN")
+	@Column(name = "OPEN_DEFECT")
 	private long opne;
 	
 	@Column(name = "CLOSED")
@@ -39,10 +41,12 @@ public class TestDefectSummary
 	@Column(name = "RE_OPENED")
 	private long reOpened;
 	
-	@Column(name = "INSERTED_DATE")
+	@Column(name = "INSERTED_DATE", updatable=false)
+	@Temporal(TemporalType.DATE)
 	private Date insertedDate;
 	
 	@Column(name = "MODIFIED_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
 	
 	@Column(name = "IS_ENABLED")

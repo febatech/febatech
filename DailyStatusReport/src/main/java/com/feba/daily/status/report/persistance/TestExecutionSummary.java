@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TEST_EXECUTION_SUMMARY")
@@ -37,10 +39,12 @@ public class TestExecutionSummary
 	@Column(name = "TOTAL_TEST_FAILED")
 	private long totalTestFailed;
 	
-	@Column(name = "INSERTED_DATE")
+	@Column(name = "INSERTED_DATE", updatable=false)
+	@Temporal(TemporalType.DATE)
 	private Date insertedDate;
 	
 	@Column(name = "MODIFIED_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
 	
 	@Column(name = "IS_ENABLED")

@@ -1,6 +1,8 @@
 package com.feba.daily.status.report.bean;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -48,6 +50,8 @@ public class DailyStatusReportBean
 	private String executionPhasePercentage;
 	
 	private String signOffAndClosurePhasePercentage;
+	
+	private String overAllPtCompletionStatusPercentage;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date releaseDate;
@@ -107,6 +111,8 @@ public class DailyStatusReportBean
 	
 	private String raidBackToGreenPlan;
 	
+	private long applicationTrackCdId;
+	
 	private long applicationTrackCdTotal;
 	
 	private long applicationTrackCdInProgress;
@@ -114,6 +120,8 @@ public class DailyStatusReportBean
 	private long applicationTrackCdOnHold;
 	
 	private long applicationTrackCdCompleted;
+	
+	private long applicationTrackStateStreetId;
 	
 	private long applicationTrackStateStreetTotal;
 	
@@ -123,6 +131,8 @@ public class DailyStatusReportBean
 	
 	private long applicationTrackStateStreetCompleted;
 	
+	private long applicationTrackSharedServicesId;
+	
 	private long applicationTrackSharedServicesTotal;
 	
 	private long applicationTrackSharedServicesInProgress;
@@ -130,6 +140,8 @@ public class DailyStatusReportBean
 	private long applicationTrackSharedServicesOnHold;
 	
 	private long applicationTrackSharedServicesCompleted;
+	
+	private long applicationTrackCitiConnectId;
 	
 	private long applicationTrackCitiConnectTotal;
 	
@@ -141,6 +153,8 @@ public class DailyStatusReportBean
 	
 	//3rd Section Description	
 	
+	private long tedsAppTrackCdId;
+	
 	private long tedsAppTrackCdTotalScenario;
 	
 	private long tedsAppTrackCdTotalTestRuns;
@@ -148,6 +162,8 @@ public class DailyStatusReportBean
 	private long tedsAppTrackCdTotalRunPass;
 	
 	private long tedsAppTrackCdTotalRunFailed;
+	
+	private long tedsAppTrackStateStreetId;
 	
 	private long tedsAppTrackStateStreetTotalScenario;
 	
@@ -157,6 +173,8 @@ public class DailyStatusReportBean
 	
 	private long tedsAppTrackStateStreetTotalRunFailed;
 	
+	private long tedsAppTrackSharedServicesId;
+	
 	private long tedsAppTrackSharedServicesTotalScenario;
 	
 	private long tedsAppTrackSharedServicesTotalTestRuns;
@@ -165,6 +183,8 @@ public class DailyStatusReportBean
 	
 	private long tedsAppTrackSharedServicesTotalRunFailed;
 	
+	private long tedsAppTrackCitiConnectId;
+	
 	private long tedsAppTrackCitiConnectTotalScenario;
 	
 	private long tedsAppTrackCitiConnectTotalTestRuns;
@@ -172,6 +192,8 @@ public class DailyStatusReportBean
 	private long tedsAppTrackCitiConnectTotalRunPass;
 	
 	private long tedsAppTrackCitiConnectTotalRunFailed;
+	
+	private long tedsAppTrackE2EId;
 	
 	private long tedsAppTrackE2ETotalScenario;
 	
@@ -182,6 +204,8 @@ public class DailyStatusReportBean
 	private long tedsAppTrackE2ETotalRunFailed;
 	
 	// Fourth section
+	
+	private long firstRowId;
 	
 	private long firstRowSeverity;
 	
@@ -195,6 +219,8 @@ public class DailyStatusReportBean
 	
 	private long firstRowReOpned;
 	
+	private long secondRowId;
+	
 	private long secondRowSeverity;
 	
 	private long secondRowOpen;
@@ -207,6 +233,8 @@ public class DailyStatusReportBean
 	
 	private long secondRowReOpned;
 	
+	private long thirdRowId;
+	
 	private long thirdRowSeverity;
 	
 	private long thirdRowOpen;
@@ -218,6 +246,8 @@ public class DailyStatusReportBean
 	private long thirdRowDefered;
 	
 	private long thirdRowReOpned;
+	
+	private long fourthRowId;
 	
 	private long fourthRowSeverity;
 	
@@ -236,6 +266,15 @@ public class DailyStatusReportBean
 	
 	private String searchSdpId;
 	
+	private List<RaidLogBean> raidLogBeanList = new LinkedList<RaidLogBean>();
+	
+	private List<TestExecutionSummaryBean> testExecutionSummaryList = new LinkedList<TestExecutionSummaryBean>();
+	
+	private List<TestDesignSummaryBean> testDesignSummaryList = new LinkedList<TestDesignSummaryBean>();
+	 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date insertedDate;
+	   
 //	private Date insertedDate;
 	
 	public long getId() {
@@ -333,6 +372,14 @@ public class DailyStatusReportBean
 	}
 	public void setSignOffAndClosurePhasePercentage(String signOffAndClosurePhasePercentage) {
 		this.signOffAndClosurePhasePercentage = signOffAndClosurePhasePercentage;
+	}
+	public String getOverAllPtCompletionStatusPercentage()
+	{
+		return overAllPtCompletionStatusPercentage;
+	}
+	public void setOverAllPtCompletionStatusPercentage(String overAllPtCompletionStatusPercentage)
+	{
+		this.overAllPtCompletionStatusPercentage = overAllPtCompletionStatusPercentage;
 	}
 	public Date getReleaseDate() {
 		return releaseDate;
@@ -1038,7 +1085,141 @@ public class DailyStatusReportBean
 	{
 		this.insertedDate = insertedDate;
 	}*/
-	
-
+	public long getApplicationTrackCdId()
+	{
+		return applicationTrackCdId;
+	}
+	public void setApplicationTrackCdId(long applicationTrackCdId)
+	{
+		this.applicationTrackCdId = applicationTrackCdId;
+	}
+	public long getApplicationTrackStateStreetId()
+	{
+		return applicationTrackStateStreetId;
+	}
+	public void setApplicationTrackStateStreetId(long applicationTrackStateStreetId)
+	{
+		this.applicationTrackStateStreetId = applicationTrackStateStreetId;
+	}
+	public long getApplicationTrackSharedServicesId()
+	{
+		return applicationTrackSharedServicesId;
+	}
+	public void setApplicationTrackSharedServicesId(long applicationTrackSharedServicesId)
+	{
+		this.applicationTrackSharedServicesId = applicationTrackSharedServicesId;
+	}
+	public long getApplicationTrackCitiConnectId()
+	{
+		return applicationTrackCitiConnectId;
+	}
+	public void setApplicationTrackCitiConnectId(long applicationTrackCitiConnectId)
+	{
+		this.applicationTrackCitiConnectId = applicationTrackCitiConnectId;
+	}
+	public long getTedsAppTrackCdId()
+	{
+		return tedsAppTrackCdId;
+	}
+	public void setTedsAppTrackCdId(long tedsAppTrackCdId)
+	{
+		this.tedsAppTrackCdId = tedsAppTrackCdId;
+	}
+	public long getTedsAppTrackStateStreetId()
+	{
+		return tedsAppTrackStateStreetId;
+	}
+	public void setTedsAppTrackStateStreetId(long tedsAppTrackStateStreetId)
+	{
+		this.tedsAppTrackStateStreetId = tedsAppTrackStateStreetId;
+	}
+	public long getTedsAppTrackSharedServicesId()
+	{
+		return tedsAppTrackSharedServicesId;
+	}
+	public void setTedsAppTrackSharedServicesId(long tedsAppTrackSharedServicesId)
+	{
+		this.tedsAppTrackSharedServicesId = tedsAppTrackSharedServicesId;
+	}
+	public long getTedsAppTrackCitiConnectId()
+	{
+		return tedsAppTrackCitiConnectId;
+	}
+	public void setTedsAppTrackCitiConnectId(long tedsAppTrackCitiConnectId)
+	{
+		this.tedsAppTrackCitiConnectId = tedsAppTrackCitiConnectId;
+	}
+	public long getTedsAppTrackE2EId()
+	{
+		return tedsAppTrackE2EId;
+	}
+	public void setTedsAppTrackE2EId(long tedsAppTrackE2EId)
+	{
+		this.tedsAppTrackE2EId = tedsAppTrackE2EId;
+	}
+	public long getFirstRowId()
+	{
+		return firstRowId;
+	}
+	public void setFirstRowId(long firstRowId)
+	{
+		this.firstRowId = firstRowId;
+	}
+	public long getSecondRowId()
+	{
+		return secondRowId;
+	}
+	public void setSecondRowId(long secondRowId)
+	{
+		this.secondRowId = secondRowId;
+	}
+	public long getThirdRowId()
+	{
+		return thirdRowId;
+	}
+	public void setThirdRowId(long thirdRowId)
+	{
+		this.thirdRowId = thirdRowId;
+	}
+	public long getFourthRowId()
+	{
+		return fourthRowId;
+	}
+	public void setFourthRowId(long fourthRowId)
+	{
+		this.fourthRowId = fourthRowId;
+	}
+	public List<RaidLogBean> getRaidLogBeanList()
+	{
+		return raidLogBeanList;
+	}
+	public void setRaidLogBeanList(List<RaidLogBean> raidLogBeanList)
+	{
+		this.raidLogBeanList = raidLogBeanList;
+	}
+	public Date getInsertedDate()
+	{
+		return insertedDate;
+	}
+	public void setInsertedDate(Date insertedDate)
+	{
+		this.insertedDate = insertedDate;
+	}
+	public List<TestExecutionSummaryBean> getTestExecutionSummaryList()
+	{
+		return testExecutionSummaryList;
+	}
+	public void setTestExecutionSummaryList(List<TestExecutionSummaryBean> testExecutionSummaryList)
+	{
+		this.testExecutionSummaryList = testExecutionSummaryList;
+	}
+	public List<TestDesignSummaryBean> getTestDesignSummaryList()
+	{
+		return testDesignSummaryList;
+	}
+	public void setTestDesignSummaryList(List<TestDesignSummaryBean> testDesignSummaryList)
+	{
+		this.testDesignSummaryList = testDesignSummaryList;
+	}
 	
 }

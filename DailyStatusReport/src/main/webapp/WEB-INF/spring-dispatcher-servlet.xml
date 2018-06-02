@@ -37,16 +37,22 @@
          <props>
             <prop key="hibernate.hbm2ddl.auto">update</prop>
 			<!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop> -->
-            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+            <!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> -->
+            <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+            <prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
+            <prop key="show_sql">true</prop>
          </props>
       </property>
    </bean> 
    
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-       <property name="url" value="jdbc:mysql://localhost:3306/dailystatusreport" />
-      <property name="username" value="indrajeet" />
-      <property name="password" value="sharma" />
+      <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+      <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+      
+       <!-- <property name="url" value="jdbc:mysql://localhost:3306/dailystatusreport" /> -->
+       <property name="url" value="jdbc:sqlserver://vm-c341-e311.nam.nsroot.net/databaseName=TDM_POC;user=sa;password=Tendulkar@2022"/>
+      <!-- <property name="username" value="indrajeet" />
+      <property name="password" value="sharma" /> -->
    </bean>
      
    
