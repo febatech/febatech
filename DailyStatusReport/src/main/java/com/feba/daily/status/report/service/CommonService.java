@@ -2,6 +2,7 @@ package com.feba.daily.status.report.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.NoResultException;
 
@@ -25,4 +26,6 @@ public interface CommonService
 	public void deleteTestDesignSummaryById(Long objectId);
 	
 	public void deleteTestExecutionSummaryById(Long objectId);
+	
+	public Map<String, Long> getLOBNFSReportDetails(Date reportDate);
 }

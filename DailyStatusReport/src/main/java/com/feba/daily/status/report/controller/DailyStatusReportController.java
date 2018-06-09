@@ -54,6 +54,10 @@ public class DailyStatusReportController
 	
 	boolean isFirstTimeSearch = false;
 	
+	private String searchDate;
+	
+	private String searchSdpId;
+	
 	public DailyStatusReportController()
 	{
 		BasicConfigurator.configure();
@@ -218,6 +222,8 @@ public class DailyStatusReportController
 			String dateIn = request.getParameter("searchDate");
 			String searchSdpId = request.getParameter("searchSdpId");
 			Date searchDate = DailyStatusReportUtil.getDateObject("yyyy-MM-dd", dateIn);
+			this.searchDate = dateIn;
+			this.searchSdpId = searchSdpId;
 			
 			List<DailyStatusReportNFT> dailyStatusReportNFTs;
 			dailyStatusReportNFTs =  commonService.searchByInsertedDateAndSPDId(searchDate, searchSdpId);
@@ -615,7 +621,7 @@ public class DailyStatusReportController
 	}
 	
 	@RequestMapping(value = "/deleteRaidLogById.html", method = RequestMethod.GET)
-	public ModelAndView deleteRaidLogById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
+	public String deleteRaidLogById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
 	{
 		logger.debug("deleteDailyStatusReport() - START");
 		logger.debug("Object Id : "+ request.getParameter("objectId"));
@@ -623,38 +629,39 @@ public class DailyStatusReportController
 		Long raidLogId = Long.parseLong(raidLogIdStr);
 		commonService.deleteRaidLogById(raidLogId);
 		ModelAndView modelAndView = new ModelAndView("updateDelete");
-		modelAndView.addObject("css", "success");
-		modelAndView.addObject("msg", "Record has been deleted!");
+//		modelAndView.addObject("css", "success");
+//		modelAndView.addObject("msg", "Record has been deleted!");
 		logger.debug("deleteDailyStatusReport() - END");
-		return modelAndView;
+		return "redirect:loadUpdateDelete.html?searchDate="+searchDate+"&searchSdpId="+searchSdpId+"";
 	}
 	
 	@RequestMapping(value = "/deleteTestDesignSummaryById.html", method = RequestMethod.GET)
-	public ModelAndView deleteTestDesignSummaryById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
+	public String deleteTestDesignSummaryById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
 	{
 		logger.debug("deleteDailyStatusReport() - START");
 		String tdsIdStr = request.getParameter("tdsId");
 		Long tdsId = Long.parseLong(tdsIdStr);
 		commonService.deleteTestDesignSummaryById(tdsId);
 		ModelAndView modelAndView = new ModelAndView("updateDelete");
-		modelAndView.addObject("css", "success");
-		modelAndView.addObject("msg", "Record has been deleted!");
+//		modelAndView.addObject("css", "success");
+//		modelAndView.addObject("msg", "Record has been deleted!");
 		logger.debug("deleteDailyStatusReport() - END");
-		return modelAndView;
+		return "redirect:loadUpdateDelete.html?searchDate="+searchDate+"&searchSdpId="+searchSdpId+"";
 	}
 	
 	@RequestMapping(value = "/deleteTestExecutionSummaryById.html", method = RequestMethod.GET)
-	public ModelAndView deleteTestExecutionSummaryById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
+	public String deleteTestExecutionSummaryById(@ModelAttribute("userForm") DailyStatusReportBean dailyStatusReportBean, HttpServletRequest request)
 	{
+		//loadUpdateDelete.html?searchDate=2018-05-07&searchSdpId=4444
 		logger.debug("deleteDailyStatusReport() - START");
 		String tedIdStr = request.getParameter("tedId");
 		Long tedId = Long.parseLong(tedIdStr);
 		commonService.deleteTestExecutionSummaryById(tedId);
 		ModelAndView modelAndView = new ModelAndView("updateDelete");
-		modelAndView.addObject("css", "success");
-		modelAndView.addObject("msg", "Record has been deleted!");
+//		modelAndView.addObject("css", "success");
+//		modelAndView.addObject("msg", "Record has been deleted!");
 		logger.debug("deleteDailyStatusReport() - END");
-		return modelAndView;
+		return "redirect:loadUpdateDelete.html?searchDate="+searchDate+"&searchSdpId="+searchSdpId+"";
 	}
 	
 }

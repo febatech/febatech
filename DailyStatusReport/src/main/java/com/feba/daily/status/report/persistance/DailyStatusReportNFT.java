@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="DAILY_STATUS_REPORT_NFT", uniqueConstraints = { @UniqueConstraint( columnNames = { "INSERTED_DATE", "SDP_ID" } ) })
+@Table(name="DAILY_STATUS_REPORT_NFT", uniqueConstraints = { @UniqueConstraint( columnNames = { "REPORT_DATE", "SDP_ID" } ) })
 //, uniqueConstraints = { @UniqueConstraint( columnNames = { "INSERTED_DATE", "SDP_ID" } ) }
 public class DailyStatusReportNFT 
 {

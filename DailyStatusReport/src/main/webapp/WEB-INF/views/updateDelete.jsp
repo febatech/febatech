@@ -320,7 +320,7 @@ function addMoreRaidLogRow(tableID) {
   	 	/* document.inputForm.rowindex.value=rowindex;
   	 	document.inputForm.action="delete";
   	 	document.inputForm.submit(); */
-  	 	document.getElementById("raidLogTable").deleteRow(rowindex);
+  	 	document.getElementById("raidLogTable").deleteRow(rowindex+1);
   	 
   	 }
   	
@@ -345,7 +345,7 @@ function addMoreRaidLogRow(tableID) {
       	 impactedAppCol.className = "form-control";
       	 impactedAppCol.name="tdsTotal"+(rowCount-1);
       	impactedAppCol.id="tdsTotal"+(rowCount-1);
-      	 impactedAppCol.setAttribute("onchange", "javascript:completionOfTestDesignSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");//'fourthRowReOpned', this.value
+      	impactedAppCol.setAttribute("onchange", "javascript:completionOfTestDesignSummary(this.name, this.value,"+(rowCount-1)+", 'testDesignSummaryTable')");//'fourthRowReOpned', this.value
       	 cell2.appendChild(impactedAppCol);
       	
       	 
@@ -372,7 +372,7 @@ function addMoreRaidLogRow(tableID) {
       	 portfolioManagerCol.className = "form-control";
       	 portfolioManagerCol.name="tdsCompleted"+(rowCount-1);
       	portfolioManagerCol.id="tdsCompleted"+(rowCount-1);
-      	portfolioManagerCol.setAttribute("onchange", "javascript:completionOfTestDesignSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");
+      	portfolioManagerCol.setAttribute("onchange", "javascript:completionOfTestDesignSummary(this.name, this.value,"+(rowCount-1)+", 'testDesignSummaryTable')");
       	 cell5.appendChild(portfolioManagerCol);
       	 
       	var cell6 = row.insertCell(5);  //to insert 5th column
@@ -381,7 +381,9 @@ function addMoreRaidLogRow(tableID) {
    	portfolioManagerCol.value = 0;
    	 portfolioManagerCol.className = "form-control";
    	 portfolioManagerCol.name="tdsCompletion"+(rowCount-1);
+   	portfolioManagerCol.step=".01";
    	portfolioManagerCol.id="tdsCompletion"+(rowCount-1);
+   	portfolioManagerCol.readOnly = true;
    	 cell6.appendChild(portfolioManagerCol);
       	 
       	 
@@ -428,7 +430,7 @@ function addMoreRaidLogRow(tableID) {
          	 impactedAppCol.className = "form-control";
          	 impactedAppCol.name="totalScenario"+(rowCount-1);
          	impactedAppCol.id="totalScenario"+(rowCount-1);
-         	impactedAppCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");
+//          	impactedAppCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");
          	 cell2.appendChild(impactedAppCol);
          	 
          	var cell3 = row.insertCell(2); // to insert 3rd column
@@ -438,7 +440,7 @@ function addMoreRaidLogRow(tableID) {
          	 descriptionCol.className = "form-control";
          	 descriptionCol.name="totalTestRun"+(rowCount-1);
          	descriptionCol.id="totalTestRun"+(rowCount-1);
-         	descriptionCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");
+         	descriptionCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", 'testExecutionSummaryTable')");
          	 cell3.appendChild(descriptionCol);
          	 
          	 var cell4 = row.insertCell(3);  //to insert 4th column
@@ -448,7 +450,7 @@ function addMoreRaidLogRow(tableID) {
          	 statusCol.className = "form-control";
          	 statusCol.name="totalTestRunPass"+(rowCount-1);
          	 statusCol.id="totalTestRunPass"+(rowCount-1);
-         	statusCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", "+rowCount+")");
+         	statusCol.setAttribute("onchange", "javascript:completionOfTestExecutionSummary(this.name, this.value,"+(rowCount-1)+", 'testExecutionSummaryTable')");
          	 cell4.appendChild(statusCol);
          	 
          	 var cell5 = row.insertCell(4);  //to insert 5th column
@@ -467,6 +469,8 @@ function addMoreRaidLogRow(tableID) {
         	 portfolioManagerCol.className = "form-control";
         	 portfolioManagerCol.name="tesCompletion"+(rowCount-1);
         	 portfolioManagerCol.id="tesCompletion"+(rowCount-1);
+        	 portfolioManagerCol.step=".01";
+        	 portfolioManagerCol.readOnly = true;
         	 cell6.appendChild(portfolioManagerCol);
          	 
          	 
@@ -487,31 +491,35 @@ function addMoreRaidLogRow(tableID) {
          		document.getElementById("testExecutionSummaryTable").deleteRow(rowindex+1);
          	 
          	 }
-  	
+  	//Please enter a valid value
   	function addAsNewRecord()
   	{
   		document.getElementById("addAsANewRecord").value = 'Yes';
   	}
   	
-	function overallPTCompletionStatusInPercentage(name, data)
+  	function overallPTCompletionStatusInPercentage(name, data)
 	{
-		var result = 0;
+		var result = 0.0;
 		var planingPhasePercentage = document.getElementById('planingPhasePercentage').value;
 		var testDesignPhasePercentage = document.getElementById('testDesignPhasePercentage').value;
 		var executionPhasePercentage = document.getElementById('executionPhasePercentage').value;
 		var signOffAndClosurePhasePercentage = document.getElementById('signOffAndClosurePhasePercentage').value;
-			result = (parseInt(planingPhasePercentage) + parseInt(testDesignPhasePercentage) + parseInt(executionPhasePercentage) + parseInt(signOffAndClosurePhasePercentage))/4;
+			result = parseFloat(((parseInt(planingPhasePercentage) + parseInt(testDesignPhasePercentage) + parseInt(executionPhasePercentage) + parseInt(signOffAndClosurePhasePercentage))/4));
 	    if (!isNaN(result)) 
 	    {
-	        document.getElementById('overAllPtCompletionStatusPercentage').value = result;
+	    	var roundedNumber = Math.round(result * 10) / 10;
+	        document.getElementById('overAllPtCompletionStatusPercentage').value = roundedNumber;
 	    }
 	}
 	
-	function completionOfTestDesignSummary(name, data, completionId, tableRows)
+	function completionOfTestDesignSummary(name, data, completionId, tableId)
 	{
-		var result = 0;
+		alert('2');
+		var result = 0.0;
 		var tdsCompletion = document.getElementById('tdsCompleted'+completionId).value;
 		var tdsTotal = document.getElementById('tdsTotal'+completionId).value;
+		var table = document.getElementById(tableId);
+   	 	var rowCount = (table.rows.length)-2;
 		
 		if(name == 'tdsCompleted'+completionId)
 		{
@@ -523,47 +531,55 @@ function addMoreRaidLogRow(tableID) {
 		}
 	    if (!isNaN(result)) 
 	    {
-	    	var truncated = Math.trunc(result * 100);
-	        document.getElementById('tdsCompletion'+completionId).value = truncated;
-	        var tableRows = (parseInt(tableRows)-1);   
-	        var num1 = 0;
+	    	var truncated = 0.0;
+	    	truncated = parseFloat((result)*100);
+	    	var roundedNumber = Math.round(truncated * 10) / 10;
+	        document.getElementById('tdsCompletion'+completionId).value = roundedNumber;
+	        console.log("Row Count : "+rowCount);
+	        var num1 = 0.0;
 	        var i;
-	        for (i = 1; i <= tableRows; i++) 
+	        for (i = 1; i <= rowCount; i++) 
 	        { 
-	        	num1 += (parseInt(document.getElementById('tdsCompletion'+i).value));
+	        	num1 += (parseFloat(document.getElementById('tdsCompletion'+i).value));
 	        }
-	        document.getElementById('testDesignPhasePercentage').value = ((parseInt(num1))/(parseInt(tableRows)));
+	        var roundNumber = Math.round(((parseFloat(num1))/(parseInt(rowCount))) * 10) / 10;        	        
+	        document.getElementById('testDesignPhasePercentage').value = roundNumber;
 	    }
+	    overallPTCompletionStatusInPercentage(null, null);
 	}
 	
-	function completionOfTestExecutionSummary(name, data, completionId, tableRows)
+	function completionOfTestExecutionSummary(name, data, completionId, tableId)
 	{
-		var result = 0;
+		alert('1');
+		var result = 0.0;
 		var totalScenario = document.getElementById('totalScenario'+completionId).value;
 		var totalTestRun = document.getElementById('totalTestRun'+completionId).value;
 		var totalTestRunPass = document.getElementById('totalTestRunPass'+completionId).value;
-		
+		var table = document.getElementById(tableId);
+   	 	var rowCount = (table.rows.length)-2;
 		
 		if(name == 'totalTestRun'+completionId)
 		{
-			result = ((parseInt(totalTestRunPass) / parseInt(data)) * 100 );
+			result = parseFloat(parseInt(totalTestRunPass) / parseInt(data));
 		}
 		if(name == 'totalTestRunPass'+completionId)
 		{
-			result = ((parseInt(data) / parseInt(totalTestRun)) * 100 );
+			result = parseFloat(parseInt(data) / parseInt(totalTestRun));
 		}
 	    if (!isNaN(result)) {
-	    	var truncated = Math.trunc(result * 100);
-	        document.getElementById('tesCompletion'+completionId).value = truncated;
-	        var tableRows = (parseInt(tableRows)-1);   
-	        var num1 = 0;
+	    	var truncated = parseFloat((result) * 100);
+	    	var roundedNumber = Math.round(truncated * 10) / 10;
+	        document.getElementById('tesCompletion'+completionId).value = roundedNumber;
+	        var num1 = 0.0;
 	        var i;
-	        for (i = 1; i <= tableRows; i++) 
+	        for (i = 1; i <= rowCount; i++) 
 	        { 
-	        	num1 += (parseInt(document.getElementById('tesCompletion'+i).value));
+	        	num1 += (parseFloat(document.getElementById('tesCompletion'+i).value));
 	        }
-	        document.getElementById('executionPhasePercentage').value = ((parseInt(num1))/(parseInt(tableRows)));
+	        var roundNumber = Math.round(((parseFloat(num1))/(parseInt(rowCount))) * 10) / 10;
+	        document.getElementById('executionPhasePercentage').value = roundNumber;
 	    }
+	    overallPTCompletionStatusInPercentage(null, null);
 	}
 
 	function dateDiff(e, rowId)
@@ -584,7 +600,7 @@ function addMoreRaidLogRow(tableID) {
 		  var date2_ms = todayDate.getTime();
 
 		  // Calculate the difference in milliseconds
-		  var difference_ms = date1_ms - date2_ms;
+		  var difference_ms = date2_ms - date1_ms;
 		    
 		  // Convert back to days and return
 		  document.getElementById('age'+rowId).value = (Math.round(difference_ms/one_day));
@@ -686,7 +702,7 @@ function addMoreRaidLogRow(tableID) {
                                     </td>
                                     <td>
                                     	<form:input id="planingPhasePercentage" path="planingPhasePercentage" type="number" style="width:70px" class="form-control" 
-                                    		 onchange="overallPTCompletionStatusInPercentage('planingPhasePercentage', this.value)"/>
+                                    		 step=".01" onchange="overallPTCompletionStatusInPercentage('planingPhasePercentage', this.value)"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -695,7 +711,7 @@ function addMoreRaidLogRow(tableID) {
                                     <td><form:input id="testDesignPhaseEnd" path="testDesignPhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td>
                                     	<form:input id="testDesignPhasePercentage" path="testDesignPhasePercentage" type="number" style="width:70px" class="form-control" 
-                                    		 onchange="overallPTCompletionStatusInPercentage('overallPTCompletionStatusInPercentage', this.value)"/>
+                                    		 step=".01" onchange="overallPTCompletionStatusInPercentage('overallPTCompletionStatusInPercentage', this.value)"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -704,7 +720,7 @@ function addMoreRaidLogRow(tableID) {
                                     <td><form:input id="executionPhaseEnd" path="executionPhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td>
                                     	<form:input id="executionPhasePercentage" path="executionPhasePercentage" type="number" style="width:70px" class="form-control" 
-                                    		 onchange="overallPTCompletionStatusInPercentage('overallPTCompletionStatusInPercentage', this.value)"/>
+                                    		 step=".01" onchange="overallPTCompletionStatusInPercentage('overallPTCompletionStatusInPercentage', this.value)"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -713,7 +729,7 @@ function addMoreRaidLogRow(tableID) {
                                     <td><form:input id="signOffAndClosurePhaseEnd" path="signOffAndClosurePhaseEnd" type="date" style="width:173px" class="form-control"/></td>
                                     <td>
                                     	<form:input id="signOffAndClosurePhasePercentage" path="signOffAndClosurePhasePercentage" type="number" style="width:70px" class="form-control" 
-                                    		 onchange="overallPTCompletionStatusInPercentage('signOffAndClosurePhasePercentage', this.value)"/>
+                                    		 step=".01" onchange="overallPTCompletionStatusInPercentage('signOffAndClosurePhasePercentage', this.value)"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -734,7 +750,7 @@ function addMoreRaidLogRow(tableID) {
 										</form:select>
 										<form:errors path="overAllPtCompletionStatus" cssClass="error"/>
 						            </td>
-                                    <td><form:input id = "overAllPtCompletionStatusPercentage" path = "overAllPtCompletionStatusPercentage" type="number" class="form-control"/></td>
+                                    <td><form:input id = "overAllPtCompletionStatusPercentage" path = "overAllPtCompletionStatusPercentage" type="number" step=".01" class="form-control"/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1021,13 +1037,15 @@ function addMoreRaidLogRow(tableID) {
 	                   		<tr>
 	                   			
 	                   			<td><input id="applicationTrack${i.index+1}" name="applicationTrack${i.index+1}" value = "${entry.applicationTrackType}" type="text" class="form-control"/></td>
-	                   			<td><input id="tdsTotal${i.index+1}" name="tdsTotal${i.index+1}" value = "${entry.total}" type="text" class="form-control"/></td>
+	                   			<td><input id="tdsTotal${i.index+1}" name="tdsTotal${i.index+1}" value = "${entry.total}" type="text" class="form-control" 
+	                   						onchange="completionOfTestDesignSummary(this.name, this.value,${i.index+1}, 'testDesignSummaryTable')"/></td>
 	                   			<td><input id="tdsInProgress${i.index+1}" name="tdsInProgress${i.index+1}" value = "${entry.inProgress}" type="text" class="form-control"/></td>
 	                   			<td><input id="tdsOnHold${i.index+1}" name="tdsOnHold${i.index+1}" value = "${entry.onHold}" type="text" class="form-control"/></td>
-	                   			<td><input id="tdsCompleted${i.index+1}" name="tdsCompleted${i.index+1}" value = "${entry.completed}" type="text" class="form-control"/></td>
+	                   			<td><input id="tdsCompleted${i.index+1}" name="tdsCompleted${i.index+1}" value = "${entry.completed}" type="text" class="form-control" 
+	                   						onchange="completionOfTestDesignSummary(this.name, this.value,${i.index+1}, 'testDesignSummaryTable')"/></td>
 	                   			<td>
 	                   				<%-- <input id="tdsCompletion${i.index+1}" name="tdsCompletion${i.index+1}" value = "${entry.completed / entry.total} "  type="text" class="form-control"/> --%>
-	                   				<input id="tdsCompletion${i.index+1}" name="tdsCompletion${i.index+1}" value = "<fmt:formatNumber value="${entry.completed / entry.total}" minFractionDigits="2" maxFractionDigits="2"/>"/>
+	                   				<input id="tdsCompletion${i.index+1}" name="tdsCompletion${i.index+1}"class="form-control" readOnly = "true" value = "<fmt:formatNumber value="${entry.completed / entry.total}" minFractionDigits="2" maxFractionDigits="2"/>"/>
 	                   			</td>
 	                   			
 	                   			<td><a href="deleteTestDesignSummaryById.html?tdsId=${entry.id}">Delete</a>
@@ -1102,11 +1120,13 @@ function addMoreRaidLogRow(tableID) {
 	                   			
 	                   			<td><input id="tesApplicationTrack${i.index+1}" name="tesApplicationTrack${i.index+1}" value = "${entry.applicationTrackType}" type="text" class="form-control"/></td>
 	                   			<td><input id="totalScenario${i.index+1}" name="totalScenario${i.index+1}" value = "${entry.totatlScenario}" type="text" class="form-control"/></td>
-	                   			<td><input id="totalTestRun${i.index+1}" name="totalTestRun${i.index+1}" value = "${entry.totalTestRun}" type="text" class="form-control"/></td>
-	                   			<td><input id="totalTestRunPass${i.index+1}" name="totalTestRunPass${i.index+1}" value = "${entry.totalTestPass}" type="text" class="form-control"/></td>
+	                   			<td><input id="totalTestRun${i.index+1}" name="totalTestRun${i.index+1}" value = "${entry.totalTestRun}" type="text" class="form-control" 
+	                   						onchange="completionOfTestExecutionSummary(this.name, this.value,${i.index+1}, 'testExecutionSummaryTable')"/></td>
+	                   			<td><input id="totalTestRunPass${i.index+1}" name="totalTestRunPass${i.index+1}" value = "${entry.totalTestPass}" type="text" class="form-control" 
+	                   							onchange="completionOfTestExecutionSummary(this.name, this.value,${i.index+1}, 'testExecutionSummaryTable')"/></td>
 	                   			<td><input id="totalTestRunFailed${i.index+1}" name="totalTestRunFailed${i.index+1}" value = "${entry.totalTestFailed}" type="text" class="form-control"/></td>
 	                   			<td>
-	                   				<input id="tesCompletion${i.index+1}" name="tesCompletion${i.index+1}" value = "<fmt:formatNumber value="${(entry.totalTestPass / entry.totalTestRun) * 100 }"  minFractionDigits="2" maxFractionDigits="2"/>" type="text" class="form-control"/>
+	                   				<input id="tesCompletion${i.index+1}" name="tesCompletion${i.index+1}" readOnly = "true" value = "<fmt:formatNumber value="${(entry.totalTestPass / entry.totalTestRun) * 100 }"  minFractionDigits="2" maxFractionDigits="2"/>" type="text" class="form-control"/>
 	                   			</td>
 	                   			
 	                   			<td><a href="deleteTestExecutionSummaryById.html?tedId=${entry.id}">Delete</a>
@@ -1197,7 +1217,7 @@ function addMoreRaidLogRow(tableID) {
 				 	  <button class="btn btn-danger" type="button"
 				 	  	onclick="location.href='deleteDailyStatusReport.html?objectId='+document.getElementById('id').value;">Delete</button> 
 				 	 <button id = "submitButton" disabled = "true" class="btn btn-danger" type="submit"
-				 	  	onclick="addAsNewRecord()">Submit today's DSR</button>
+				 	  	onclick="addAsNewRecord(); onSubmitRowCount('raidLogTable'); onSubmitRowCountTDS('testDesignSummaryTable'); onSubmitRowCountTED('testExecutionSummaryTable')">Submit today's DSR</button>
 				 <br/>
 				 <br/>
             </c:otherwise>

@@ -58,7 +58,7 @@
 
 </style>
 <body>
-<form:form id="searchForm"  modelAttribute="searchForm" method="get" action="searchDailyStaturReport.html">
+<form:form id="searchForm"  modelAttribute="searchForm" method="get" action="readOnlySearch.html">
 
 	    <div class="container" style="margin-bottom: 15px;">
 	        <div class="col-lg-6 form-search ">
@@ -71,8 +71,7 @@
 	            		<td><form:input id = "searchSdpId" path = "searchSdpId" placeholder="SDP Id" type="text" class="form-control search-input" 
 	            	style = " margin-bottom:1% "/></td>
 	            		<td> <button class="btn btn-danger buttons">Search</button></td>
-	            		<td><button class="btn btn-primary buttons  edit " type="button"  
-	                onclick="location.href='loadUpdateDelete.html?searchDate='+document.getElementById('searchDate').value+'&searchSdpId='+document.getElementById('searchSdpId').value;">Edit</button></td>
+	            		<td></td>
 	            	</tr>
 	            	<tr>
 	            		<td colspan="4" align="center"><a href = "index.html">Back to the Home Page !!!</a></td>

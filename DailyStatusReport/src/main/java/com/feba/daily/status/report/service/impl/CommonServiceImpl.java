@@ -3,6 +3,7 @@ package com.feba.daily.status.report.service.impl;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.NoResultException;
@@ -457,6 +458,14 @@ public class CommonServiceImpl implements CommonService
 		commonDataDao.deleteTestExecutionSummaryById(objectId);
 		logger.debug("deleteTestExecutionSummaryById() - END");
 		
+	}
+
+	@Override
+	public Map<String, Long> getLOBNFSReportDetails(Date reportDate)
+	{
+		logger.debug("getLOBNFSReportDetails() - START");
+		
+		return commonDataDao.getLOBNFSReportDetails(reportDate);
 	}
 
 

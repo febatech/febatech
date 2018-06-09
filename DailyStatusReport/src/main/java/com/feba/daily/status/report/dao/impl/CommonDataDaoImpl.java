@@ -1,10 +1,14 @@
 package com.feba.daily.status.report.dao.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -63,7 +67,7 @@ public class CommonDataDaoImpl implements CommonDataDao
 		String tempDate = DailyStatusReportUtil.getDateFormat("yyyy-MM-dd").format(insertedDate);
 		Date inputDate = DailyStatusReportUtil.getDateObject("yyyy-MM-dd", tempDate);
 //		List<DailyStatusReportNFT> dailyStatusReportNFTs = (List<DailyStatusReportNFT>)manager.createQuery("Select a From DailyStatusReportNFT a").getResultList();
-		Query query = manager.createQuery("Select dsr from DailyStatusReportNFT dsr where dsr.reportDate >=:arg1 AND dsr.sdpId =:arg2");
+		Query query = manager.createQuery("Select dsr from DailyStatusReportNFT dsr where dsr.reportDate =:arg1 AND dsr.sdpId =:arg2");
 		query.setParameter("arg1", inputDate);
 		query.setParameter("arg2", spdId);
 		DailyStatusReportNFT dailyStatusReportNFT = (DailyStatusReportNFT) query.getSingleResult();
@@ -144,5 +148,86 @@ public class CommonDataDaoImpl implements CommonDataDao
 		logger.debug("deleteTestExecutionSummaryById() - END");
 		
 	}
+	
+	@Override
+	public Map<String, Long> getLOBNFSReportDetails(Date reportDate)
+	{
+		logger.debug("getLOBNFSReportDetails() - START");
+		String dbType = null;
+		String queryChunk = null;
+		String tempDate = DailyStatusReportUtil.getDateFormat("yyyy-MM-dd").format(reportDate);
+		
+		Map<String, Long> map = new LinkedHashMap<String, Long>();
+		
+		EntityManagerFactory emf = manager.getEntityManagerFactory();
+		
+		Map<String, Object> props = emf.getProperties();
+		
+		logger.debug("Entity Manager Faactory properties : "+props);
+		
+		String dialectType = (String)props.get("hibernate.dialect");
+		
+		logger.debug("Dialect Type : "+dialectType);
+		
+		
+		if(dialectType.contains("Oracle")){
+			// Database is Oracle
+			logger.debug("Which data base dialect ? : "+dialectType);
+			dbType = "Oracle";
+			queryChunk = "TO_DATE('"+tempDate+"', 'YYYY-MM-DD')";
+		}
+		
+		
+		if(dialectType.contains("MySQL5Dialect")){
+			// Database is MySql 
+			logger.debug("Which data base dialect ? : "+dialectType);
+			dbType = "MySQL";
+			queryChunk = "STR_TO_DATE('"+tempDate+"', '%Y-%m-%d')";
+		}
+		
+		if(dialectType.contains("SQLServerDialect")){
+			// Database is SQL Server 
+			dbType = "MSSql";
+			logger.debug("Which data base dialect ? : "+dialectType);
+			queryChunk = "convert(varchar, '"+tempDate+"',  23)";
+		}
+		
+		logger.debug("get details for the NFS Report ");
+//		String reportDateString = DailyStatusReportUtil.getDateFormat("yyyy-MM-dd").format(reportDate);
+		Query query = null;
+		if(reportDate == null ){
+			query = manager.createNativeQuery("Select count(DAILY_STS_RPT_ID) as count, LOBS from DAILY_STATUS_REPORT_NFT group by LOBS");
+		}else{
+			query = manager.createNativeQuery("Select count(DAILY_STS_RPT_ID) as count, LOBS from DAILY_STATUS_REPORT_NFT where REPORT_DATE = "+queryChunk+" group by LOBS");
+		}
 
+		@SuppressWarnings("unchecked")
+		List<Object[]> listObjects = query.getResultList();
+		for(Object[] objArr : listObjects)
+		{
+			logger.debug("Inside For Loop : "+objArr[0]+" : "+objArr[1]);
+			logger.debug("Data Type of Count from SQL Query : "+((objArr[0]).getClass()));
+			Long count = 0L;
+			if(dbType.equals("MSSql"))
+			{
+				count = ((Integer)objArr[0]).longValue();
+			}
+			else if(dbType.equals("MySQL"))
+			{
+				count = ((BigInteger)objArr[0]).longValue();
+			}
+			else
+			{
+				count = (Long)objArr[0];
+			}
+			
+		    
+		    String lobs = (String)objArr[1];
+		    map.put(lobs, count);
+		    logger.debug("Data added in HashMap : "+map);
+		    System.out.println(count + " : " +lobs);
+		}
+		logger.debug("getLOBNFSReportDetails() - END");
+		return map;
+	}
 }

@@ -11,18 +11,9 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link href="css/animate.min.css" />
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/style.css" />
-
-    <!--<script src="js/bootstrap.min.js"></script>-->
-<script src="js/jquery-2.2.4.min.js"></script>
- <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
-        <script src="js/dynamic_list_helper2.js" type="text/javascript"></script>
-    <!--<script src="js/custom.js"></script>-->
-
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+    <script src="js/jquery-2.2.4.min.js"></script>
+	<script src="js/dynamic_list_helper2.js" type="text/javascript"></script>
 </head>
 
 <script type="text/javascript">
@@ -200,12 +191,7 @@
     	 descriptionCol.name="description"+(rowCount-1);
     	 cell3.appendChild(descriptionCol);
     	 
-    	 /* var cell4 = row.insertCell(3);  //to insert 4th column
-    	 var statusCol = document.createElement("input");
-    	 statusCol.type = "text";
-    	 statusCol.className = "form-control";
-    	 statusCol.name="status"+(rowCount-1);
-    	 cell4.appendChild(statusCol); */
+    	
     	 
     	 //Open, In Progress, Fixed, Reset, Rejected, Reopen and Close
     	 var cell4 = row.insertCell(3);
@@ -627,7 +613,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th colspan=""><font size="5">Daily Status Report - NFT - ${todayDate}</font></th>
+                            <th colspan=""><font size="5">LOB Daily Status Report - NFT - ${todayDate}</font></th>
                         </tr>
                     </thead>
                 </table>
@@ -711,15 +697,7 @@
                             <tbody>
                                 <tr>
                                     <td>Track</td>
-                                    <td>RAG
-                                    	<%-- <form:select path="trackStatus" class="form-control">
-											<form:option value="NONE" label="--- Select ---" />
-											<form:options items="${trackWiseStausDropDownList}" />
-											<c:forEach items="${trackWiseStausDropDownList}" var="currObj">
-										        <form:option class="${currObj.value}" value="${currObj.value}"></form:option>
-										    </c:forEach> 
-										</form:select> --%>
-            						</td>
+                                    <td>RAG</td>
                                 </tr>
                                 <tr>
                                     <td>City Connect</td>
@@ -886,42 +864,7 @@
 						<th>Action</th>
                     </thead>
                     <tbody id="raidLogListContainer">
-                        <%-- <tr>
-                            <td><form:input id="type" path="type" type="text" class="form-control"/></td>
-                            <td><form:input id="impactedApp" path="impactedApp" type="text" class="form-control"/></td>
-                            <td><form:input id="description" path="description" type="text" class="form-control"/></td>
-                            <td><form:input id="status" path="status" type="text" class="form-control"/></td>
-
-                            <td class="violet"><form:input id="portfolioManager" path="portfolioManager" type="text" class="form-control"/></td>
-                            <td><form:input id="radiOwner" path="radiOwner" type="text" class="form-control"/></td>
-                            <td><form:input id="rag" path="rag" type="text" class="form-control"/></td>
-                            <td><form:input id="dateLogged" path="dateLogged" type="date" class="form-control"/></td>
-                            <td><form:input id="targetClosureDate" path="targetClosureDate" type="date" class="form-control"/></td>
-                            <td><form:input id="age" path="age" type="number" class="form-control"/></td>
-                            <td><form:input id="mileStoneImpacted" path="mileStoneImpacted" type="text" class="form-control"/></td>
-                            <td><form:input id="raidBackToGreenPlan" path="raidBackToGreenPlan" type="text" class="form-control"/></td>
-
-
-                        </tr> --%>
-                        <%-- <c:forEach items="${raidLogBeans}" var="RaidLogBean" varStatus="i" begin="0" >
-	                        <tr class="raidLog">    
-	                            <td><form:input path="raidLogBeans[${i.index}].type" id="type${i.index}" /></td>
-	                            <td><form:input path="raidLogBeans[${i.index}].impactedApp" id="impactedApp${i.index}" /></td>
-	                           	<td><input type="text" name="raidLogBeans[].type" value="${RaidLogBean.type}" /></td>
-                            	<td><input type="text" name="raidLogBeans[].impactedApp" value="${RaidLogBean.impactedApp}" /></td>
-	                            <td><a href="#" class="removePerson">Remove Raid Log</a></td>
-	                        </tr>
-	                    </c:forEach>
                         
-                        
-                        <c:if test="${raidLogBeans.size() == 0}">
-	                        <tr class="person defaultRow">    
-	                            <td><input type="text" name="raidLogBeans[].type" value="" /></td>
-	                            <td><input type="text" name="raidLogBeans[].impactedApp" value="" /></td>
-	                            <td><a href="#" class="removeRaidLog">Remove Raid Log</a></td>
-	                        </tr>
-                    	</c:if> --%>
-
                     </tbody>
 
                 </table>
@@ -949,35 +892,7 @@
 
                     </thead>
                     <tbody id = "testDesignSummaryListContainer">
-                        <%-- <tr>
-                            <td>CD</td>
-                            <td><form:input id="applicationTrackCdTotal" path="applicationTrackCdTotal" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCdInProgress" path="applicationTrackCdInProgress" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCdOnHold" path="applicationTrackCdOnHold" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCdCompleted" path="applicationTrackCdCompleted" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>State Street</td>
-                            <td><form:input id="applicationTrackStateStreetTotal" path="applicationTrackStateStreetTotal" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackStateStreetInProgress" path="applicationTrackStateStreetInProgress" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackStateStreetOnHold" path="applicationTrackStateStreetOnHold" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackStateStreetCompleted" path="applicationTrackStateStreetCompleted" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>Shared Services</td>
-                            <td><form:input id="applicationTrackSharedServicesTotal" path="applicationTrackSharedServicesTotal" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackSharedServicesInProgress" path="applicationTrackSharedServicesInProgress" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackSharedServicesOnHold" path="applicationTrackSharedServicesOnHold" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackSharedServicesCompleted" path="applicationTrackSharedServicesCompleted" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>CitiConnect</td>
-                            <td><form:input id="applicationTrackCitiConnectTotal" path="applicationTrackCitiConnectTotal" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCitiConnectInProgress" path="applicationTrackCitiConnectInProgress" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCitiConnectOnHold" path="applicationTrackCitiConnectOnHold" type="number" class="form-control"/></td>
-                            <td><form:input id="applicationTrackCitiConnectCompleted" path="applicationTrackCitiConnectCompleted" type="number" class="form-control"/></td>
-                        </tr> --%>
-
+                       
                     </tbody>
 
                 </table>
@@ -1003,43 +918,7 @@
 
                     </thead>
                     <tbody id = "testExecutionSummaryListContainer">
-                        <%-- <tr>
-                            <td>CD</td>
-                            <td><form:input id = "tedsAppTrackCdTotalScenario" path = "tedsAppTrackCdTotalScenario" type="number" class="form-control" 
-                            		onchange="overallPTCompletionStatusInPercentage('planingPhasePercentage', this.value)"/></td>
-                            <td><form:input id = "tedsAppTrackCdTotalTestRuns" path = "tedsAppTrackCdTotalTestRuns" type="number" class="form-control" 
-                            		onchange="overallPTCompletionStatusInPercentage('planingPhasePercentage', this.value)"/></td>
-                            <td><form:input id = "tedsAppTrackCdTotalRunPass" path = "tedsAppTrackCdTotalRunPass" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackCdTotalRunFailed" path = "tedsAppTrackCdTotalRunFailed" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>State Street</td>
-                            <td><form:input id = "tedsAppTrackStateStreetTotalScenario" path = "tedsAppTrackStateStreetTotalScenario" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackStateStreetTotalTestRuns" path = "tedsAppTrackStateStreetTotalTestRuns" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackStateStreetTotalRunPass" path = "tedsAppTrackStateStreetTotalRunPass" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackStateStreetTotalRunFailed" path = "tedsAppTrackStateStreetTotalRunFailed" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>Shared Services</td>
-                            <td><form:input id = "tedsAppTrackSharedServicesTotalScenario" path = "tedsAppTrackSharedServicesTotalScenario" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackSharedServicesTotalTestRuns" path = "tedsAppTrackSharedServicesTotalTestRuns" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackSharedServicesTotalRunPass" path = "tedsAppTrackSharedServicesTotalRunPass" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackSharedServicesTotalRunFailed" path = "tedsAppTrackSharedServicesTotalRunFailed" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>CitiConnect</td>
-                            <td><form:input id = "tedsAppTrackCitiConnectTotalScenario" path = "tedsAppTrackCitiConnectTotalScenario" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackCitiConnectTotalTestRuns" path = "tedsAppTrackCitiConnectTotalTestRuns" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackCitiConnectTotalRunPass" path = "tedsAppTrackCitiConnectTotalRunPass" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackCitiConnectTotalRunFailed" path = "tedsAppTrackCitiConnectTotalRunFailed" type="number" class="form-control"/></td>
-                        </tr>
-                        <tr>
-                            <td>E2E</td>
-                            <td><form:input id = "tedsAppTrackE2ETotalScenario" path = "tedsAppTrackE2ETotalScenario" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackE2ETotalTestRuns" path = "tedsAppTrackE2ETotalTestRuns" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackE2ETotalRunPass" path = "tedsAppTrackE2ETotalRunPass" type="number" class="form-control"/></td>
-                            <td><form:input id = "tedsAppTrackE2ETotalRunFailed" path = "tedsAppTrackE2ETotalRunFailed" type="number" class="form-control"/></td>
-                        </tr> --%>
+                       
 
                     </tbody>
 
