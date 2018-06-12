@@ -1,0 +1,24 @@
+
+
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:c = "http://www.springframework.org/schema/c"
+   xmlns:p = "http://www.springframework.org/schema/p"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   <bean id="dateS" class="java.util.Date" p:year="117" p:month="10" p:date="20"/>
+   <bean class="com.feba.spring.examples.postprocessor.InstanceBeanPostProcessor"/>
+    <bean class="com.feba.spring.examples.postprocessor.InstanceBeanFactoryPostProcessor"/>
+   <bean id="dept" class="com.feba.spring.examples.namespace.Department"
+   			c:deptNo="10001"
+   			c:deptName="Science Department"
+   			c:deptSDate-ref="dateS"/>
+   			
+   	<bean id="employee" class="com.feba.spring.examples.namespace.Employee"
+   			p:employeeNo="5001"
+   			p:employeeName="Kishan"   
+   			p:department-ref="dept"/>
+   
+</beans>

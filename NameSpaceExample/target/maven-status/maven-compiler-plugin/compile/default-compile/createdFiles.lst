@@ -1,0 +1,4 @@
+com\feba\spring\examples\postprocessor\InstanceBeanPostProcessor.class
+com\feba\spring\examples\postprocessor\InstanceBeanFactoryPostProcessor.class
+com\feba\spring\examples\namespace\Department.class
+com\feba\spring\examples\namespace\Employee.class

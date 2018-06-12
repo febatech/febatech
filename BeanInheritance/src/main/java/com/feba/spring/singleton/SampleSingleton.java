@@ -3,6 +3,8 @@ package com.feba.spring.singleton;
 public class SampleSingleton {
 	
 	 static SampleSingleton instance= null;
+	 
+	 static transient String svs = "sample ";
 	
 	private SampleSingleton(){
 		
