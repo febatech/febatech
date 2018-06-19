@@ -23,20 +23,20 @@ public class SpringBatchItemDemoApplication {
 		String[] springConfig = { "file:src/main/resources/database.xml"};
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(springConfig);
 
-		JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
-		Job job = (Job) context.getBean("DemoReportXMLWriter");
-
-		JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
-				.toJobParameters();
-
-		try {
-
-			JobExecution execution = jobLauncher.run(job, jobParameters);
-			System.out.println("Exit Status : " + execution.getStatus());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
+//		Job job = (Job) context.getBean("DemoReportXMLWriter");
+//
+//		JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
+//				.toJobParameters();
+//
+//		try {
+//
+//			JobExecution execution = jobLauncher.run(job, jobParameters);
+//			System.out.println("Exit Status : " + execution.getStatus());
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		System.out.println("Done");
 		context.close();
